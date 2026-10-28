@@ -5,7 +5,7 @@
 
 ## Mise en place
 
-- [~] **D-001** : site en ligne (Astro + GitHub Pages), accueil, récap semaines 01 à 04, semaine 05 à venir · lot L-001
+- [x] **D-001** : site en ligne (Astro + GitHub Pages), accueil, récap semaines 01 à 04, semaine 05 à venir · lot L-001 · en ligne le 2026-10-28
 
 ## Les semaines
 
@@ -21,4 +21,6 @@
 
 > Section permanente : bugs et petits ajustements découverts en route.
 
-_Rien pour l'instant._
+- [ ] Ajouter `src/lib/` à la liste des fichiers de la couche Site dans le `CLAUDE.md` racine (fichier créé au L-001). Pour le chef de projet.
+- [ ] Node.js est installé dans `~/.local/node` mais pas dans le PATH permanent : chaque session doit faire `export PATH="$HOME/.local/node/bin:$PATH"`. À rendre permanent (ligne dans `~/.profile`) si Geoffrey l'autorise, ou à noter dans le `CLAUDE.md`.
+- [ ] Avertissement GitHub : l'étiquette `ubuntu-latest` du workflow « Deploy » passe à Ubuntu 26. Rien à faire tant que le déploiement reste vert.

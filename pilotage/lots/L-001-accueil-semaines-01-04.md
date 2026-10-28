@@ -63,14 +63,14 @@ Après ce lot, Geoffrey a un vrai site en ligne qu'il peut envoyer à son futur 
 
 ## État du lot (tenu par le chef de chantier)
 
-- **Statut** : en cours (session Contenu)
-- **Branche / worktree** : `lot/accueil-semaines-01-04` · `.worktrees/accueil-semaines-01-04`
-- **Ports** : 4331 (`npm run dev -- --port 4331`, `npm run preview -- --port 4331`)
+- **Statut** : livré et en ligne (2026-10-28)
+- **Branche / worktree** : `lot/accueil-semaines-01-04` · `.worktrees/accueil-semaines-01-04` (fusionné dans main ; nettoyage du worktree en attente de l'archivage des sessions)
+- **Ports** : 4331
 - **Comptes de test créés** : aucun (site sans compte)
-- **Zones réservées** : `astro.config.mjs`, `package.json`, `src/content.config.ts`, `.github/workflows/deploy.yml` (jusqu'à la fusion)
-- **Sessions lancées** : Site (prompt 1, terminée, commit 6755a45) · Contenu (prompt 2)
-- **Fait** : étape 0 (commit `[projet]` poussé sur main) · dépôt passé en public par Geoffrey · GitHub Pages activé en mode « GitHub Actions » · Node.js 22.23.4 installé dans `~/.local/node` (pas ajouté au PATH permanent : chaque commande fait `export PATH="$HOME/.local/node/bin:$PATH"`) · branche et worktree créés · couche Site livrée (Astro 7.4.2, build vert, schéma testé, workflow Deploy prêt)
-- **Reste à faire** : session Contenu, vérifications (Playwright 1280 / 390), test du schéma, fusion, déploiement, contrôle de vie, mises à jour pilotage
+- **Zones réservées** : libérées (lot fusionné)
+- **Sessions lancées** : Site (prompt 1, commit 6755a45) · Contenu (prompt 2, commit 3ce19d2), toutes deux terminées
+- **Fait** : étape 0 · dépôt public · GitHub Pages activé · Node.js installé · couches Site et Contenu · build vert · test du schéma · vérification 1280 / 390 px (navigateur intégré de l'app au lieu de Playwright, pas installé) · fusion dans main · workflow Deploy vert · contrôle de vie en ligne OK (accueil, page semaine, 3 captures, semaine 05 en 404) · DECISIONS, _ORDRE et ROADMAP à jour
+- **Reste à faire** : archiver les sessions de couche et nettoyer le worktree (`bash scripts/worktree-fin.sh accueil-semaines-01-04`) après accord de Geoffrey
 - **Bloquant** : rien
 
 ---

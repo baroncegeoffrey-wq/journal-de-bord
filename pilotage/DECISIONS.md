@@ -27,7 +27,7 @@ Ce qui est fait en attendant : ...
 ## Décisions
 
 ### D-001 : Le site en ligne, avec l'accueil et le récap des semaines 1 à 4
-**Date** : 2026-10-28 · **Statut** : en cours · **Lot** : L-001 · **Type** : produit
+**Date** : 2026-10-28 · **Statut** : livrée · **Lot** : L-001 · **Type** : produit
 
 **Quoi** :
 - Le site existe et est en ligne gratuitement à `https://baroncegeoffrey-wq.github.io/journal-de-bord/`, construit avec Astro et mis en ligne automatiquement par GitHub Pages à chaque arrivée sur `main`.
@@ -69,6 +69,13 @@ Ce qui est fait en attendant : ...
 - Un push sur `main` remet le site en ligne tout seul (workflow « Deploy » vert dans GitHub Actions).
 
 **Compte rendu** (rempli par le chef) :
+- **Livré et en ligne le 2026-10-28** : https://baroncegeoffrey-wq.github.io/journal-de-bord/ (workflow « Deploy » vert, run 40681236532).
+- Commits : `6755a45` [site] (Astro 7.4.2, aucune autre dépendance), `3ce19d2` [contenu], plus les commits [chef] de suivi.
+- Critères vérifiés : accueil et page « Semaines 01-04 » conformes aux maquettes à 1280 et 390 px, sans défilement horizontal ; les 3 captures se chargent en ligne ; la Semaine 05 est grisée, sans lien, et n'a pas de page (404) ; retirer `appris` (session Site) puis `suite` (chef) d'une semaine publiée fait échouer le build avec un message clair, remis en état ; textes identiques mot pour mot à cette décision.
+- Écarts assumés : grille « En images » en colonnes de 240 px minimum (au lieu de 260) pour garder 3 colonnes sur ordinateur ; badge « 01-04 » en 20 px sur téléphone ; la navigation affiche le titre complet de la semaine voisine ; ajout d'un fichier de code `src/lib/site.ts` (hors liste de la couche Site dans le CLAUDE.md, à ajouter).
+- Textes d'interface écrits par la session Site : « Voir la capture en grand » (infobulle), « Autres semaines » et « Outils » (lecteurs d'écran seulement).
+- Captures publiées : akira-code 1600 px / 262 Ko, webflow-editeur 1600 px / 164 Ko, webflow-mobile 581 px / 316 Ko.
+- Mise en route : dépôt passé en public par Geoffrey, GitHub Pages activé (mode GitHub Actions), Node.js 22.23.4 installé dans `~/.local/node` (hors PATH permanent, refusé par les autorisations).
 
 ---
 
