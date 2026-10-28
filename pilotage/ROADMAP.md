@@ -9,7 +9,7 @@
 
 ## Les semaines
 
-- [ ] **D-002** : semaines 03 à 05 (Merise, UML, Airtable) et récap corrigé en semaines 01-02 · lot L-002
+- [~] **D-002** : semaines 03 à 05 (Merise, UML, Airtable) et récap corrigé en semaines 01-02 · lot L-002
 
 ## Améliorations prévues
 

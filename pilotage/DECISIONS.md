@@ -80,7 +80,7 @@ Ce qui est fait en attendant : ...
 ---
 
 ### D-002 : Semaines 03 à 05 (Merise, UML, Airtable) et correction du récap en « Semaines 01-02 »
-**Date** : 2026-10-28 · **Statut** : prête · **Lot** : L-002 · **Type** : contenu
+**Date** : 2026-10-28 · **Statut** : en cours · **Lot** : L-002 · **Type** : contenu
 
 **Quoi** :
 - **Correction** : d'après l'agenda officiel Alegria, HTML/CSS = semaine 1 et Webflow = semaine 2 ; Merise/UML et Airtable ont commencé en semaine 3. Le récap publié « Semaines 01 à 04 » devient « Semaines 01 à 02 », du 28.09 au 09.10.2026.
