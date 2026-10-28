@@ -5,7 +5,7 @@
 
 ## Mise en place
 
-- [ ] **D-001** : site en ligne (Astro + GitHub Pages), accueil, récap semaines 01 à 04, semaine 05 à venir · lot L-001
+- [~] **D-001** : site en ligne (Astro + GitHub Pages), accueil, récap semaines 01 à 04, semaine 05 à venir · lot L-001
 
 ## Les semaines
 

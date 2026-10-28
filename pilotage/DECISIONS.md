@@ -27,7 +27,7 @@ Ce qui est fait en attendant : ...
 ## Décisions
 
 ### D-001 : Le site en ligne, avec l'accueil et le récap des semaines 1 à 4
-**Date** : 2026-10-28 · **Statut** : prête · **Lot** : L-001 · **Type** : produit
+**Date** : 2026-10-28 · **Statut** : en cours · **Lot** : L-001 · **Type** : produit
 
 **Quoi** :
 - Le site existe et est en ligne gratuitement à `https://baroncegeoffrey-wq.github.io/journal-de-bord/`, construit avec Astro et mis en ligne automatiquement par GitHub Pages à chaque arrivée sur `main`.
