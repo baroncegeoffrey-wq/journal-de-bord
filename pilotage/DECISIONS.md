@@ -89,6 +89,7 @@ Ce qui est fait en attendant : ...
 **Couches** : Contenu.
 **Maquette** : aucune (contenu au modèle existant).
 **Textes** : à écrire avec Geoffrey en fin de semaine (vendredi 30 octobre), à partir de son récit et de ses captures.
+**Déjà noté** : la semaine couvre aussi **UML** (schématiser la logique d'un système) et **Mermaid** (dessiner ces schémas à partir de texte), vus avant Airtable : l'angle est « avant de construire, j'ai appris à dessiner la logique ». Geoffrey fournira du code Mermaid et des captures. Outils de la carte à prévoir : Airtable, UML, Mermaid (Make arrive la semaine suivante).
 **Actions destructives** : aucune.
 **C'est fini quand** : à compléter.
 
@@ -99,20 +100,30 @@ Ce qui est fait en attendant : ...
 ---
 
 ### D-003 : Clins d'œil à Akira et petites animations
-**Date** : 2026-10-28 · **Statut** : brouillon · **Lot** : L-003 · **Type** : produit
+**Date** : 2026-10-28 · **Statut** : prête · **Lot** : L-003 · **Type** : produit
 
-**Quoi** (idée à affiner) :
-- Ajouter quelques clins d'œil à l'univers d'Akira et du cyberpunk manga pour rendre le site plus vivant, et des petits effets animés (ex. titre qui glitche au survol, traînée lumineuse, apparition des cartes au défilement).
+**Quoi** (idées A, C, D, E, F, H de la maquette v3, retenues par Geoffrey ; B « kanji » et G « apparition au défilement » écartées) :
+- **D, un rouge néon** `#FF1E2D`, nouvelle variable CSS `--rouge`, réservé aux clins d'œil (A et C, et une des ombres du glitch E). Pas utilisé ailleurs.
+- **A, « NEO-PARIS 2026 »** : dans la barre du haut de l'accueil, à la suite de `JDB://GEOFFREY.BARONCE`, en rouge : `JDB://GEOFFREY.BARONCE · NEO-PARIS 2026`. Visible aussi sur téléphone (le texte passe à la ligne si besoin, sans défilement horizontal).
+- **C, la traînée lumineuse** : une ligne rouge lumineuse (dégradé transparent → rouge → blanc, halo) qui se dessine de gauche à droite en 1,4 s, une seule fois à l'ouverture de la page, puis reste affichée. Sous le nom sur l'accueil (largeur max 760 px), sous le titre sur la page d'une semaine (largeur max 560 px). Purement décorative (`aria-hidden`).
+- **E, le glitch animé au survol** : au survol de « Geoffrey Baronce » (accueil) et du titre d'une semaine (page semaine), le texte « bugge » (décalages cyan / magenta / rouge, petits sauts, découpes), en boucle tant que la souris est dessus. Au repos, le glitch statique actuel ne change pas. Rien sur téléphone (pas de survol), c'est normal.
+- **F, le curseur** : un bloc cyan qui clignote (1 s) juste après `> JOURNAL_DE_BORD.LOG` sur l'accueil.
+- **H, la barre « SYNC FORMATION »** : sous les deux étiquettes de l'en-tête de l'accueil. Libellé à gauche `SYNC FORMATION`, à droite `<semaine en cours> / <nombre total> SEMAINES` en vert (ex. `05 / 13 SEMAINES`), puis une case par semaine de bootcamp : semaines passées en vert lumineux, semaine en cours en jaune qui clignote, semaines à venir vides. Le calcul se fait **au moment de la construction du site** à partir de deux dates : début 2026-09-28, fin 2026-12-24 (= 13 semaines, du lundi 28 septembre à la semaine du 21 décembre). Avant le début : 00, tout vide. Après la fin : `13 / 13 SEMAINES`, tout en vert, rien ne clignote.
+- **Mise à jour automatique de H** : le site se reconstruit tout seul **chaque lundi matin** (ajout d'un déclenchement planifié au workflow « Deploy », lundi 6 h UTC), pour que la barre avance même les semaines où rien n'est publié.
+- **Toutes les animations** sont en CSS seul (aucun JavaScript), et coupées si l'appareil demande moins d'animations (`prefers-reduced-motion`) : la traînée s'affiche alors directement en entier, le curseur reste fixe, la case en cours reste jaune.
 
-**Pourquoi** : Geoffrey veut un site plus stylé et plus personnel ; sa première page codée en formation était un hommage à Akira, ça fait le lien.
-**Couches** : Site.
-**Maquette** : à faire (v3), à valider par Geoffrey avant de passer en `prête`.
-**Règle déjà fixée** : uniquement des clins d'œil **originaux** (couleur, ambiance, typographie, motifs, petits textes). Aucune affiche, aucun logo, aucun personnage, aucune image ni titre stylisé tirés du film, du manga ou de la série.
-**Textes** : à définir.
-**Actions destructives** : aucune.
-**C'est fini quand** : à compléter.
-
-**Manque pour passer en `prête`** : la liste précise des clins d'œil et animations, la maquette v3 validée, la décision d'autoriser un peu de JavaScript ou non (les animations peuvent souvent se faire en CSS seul).
+**Pourquoi** : Geoffrey veut un site plus stylé et plus personnel ; sa première page codée en formation était un hommage à Akira, ça fait le lien (Néo-Tokyo → Néo-Paris, le rouge, les feux de la moto). La barre de progression est utile à son maître d'apprentissage : on voit d'un coup d'œil où il en est.
+**Couches** : Site (styles, composants, calcul de la barre, workflow), puis Contenu (les deux dates dans `src/data/site.json`).
+**Maquette** : `resources/screens/accueil.html` et `resources/screens/semaine.html` (v3, validées par Geoffrey le 2026-10-28 ; remplacent la v2, toujours visible dans l'historique git). La maquette affiche un état figé de la barre (`05 / 13`) : en vrai, elle est calculée.
+**Règle** : uniquement des clins d'œil **originaux**. Aucune affiche, aucun logo, aucun personnage, aucune image, aucune pilule, aucun titre stylisé tirés du film, du manga ou de la série.
+**Textes** : `NEO-PARIS 2026` · `SYNC FORMATION` · `<NN> / <TT> SEMAINES` (numéros sur 2 chiffres). Dates de la formation : début 2026-09-28, fin 2026-12-24.
+**Actions destructives** : aucune. (Les maquettes v2 sont remplacées par les v3 dans `resources/screens/` : c'est fait par le chef de projet, l'historique git les garde.)
+**C'est fini quand** :
+- En ligne, l'accueil montre `NEO-PARIS 2026` en rouge, le curseur qui clignote, la traînée rouge qui se dessine sous le nom, et le nom qui glitche au survol ; la page « Semaines 01-04 » montre la traînée sous le titre et le glitch au survol du titre.
+- La barre affiche la bonne semaine pour la date du jour de construction (le 28/10/2026 : `05 / 13`, 4 cases vertes, 1 jaune, 8 vides) ; testé aussi avec une date avant le début et une date après la fin (le calcul accepte une date forcée pour le test, sans que ça reste dans le code en ligne).
+- Le workflow « Deploy » a un déclenchement planifié le lundi et un lancement manuel réussi après la fusion.
+- Avec « réduire les animations » activé (émulation Playwright `reducedMotion: 'reduce'`), plus rien ne bouge et tout reste lisible.
+- 1280 px et 390 px conformes à la maquette, sans défilement horizontal ; aucune couleur en dur (le rouge passe par `--rouge`) ; aucun JavaScript côté navigateur.
 
 **Compte rendu** (rempli par le chef) :
 

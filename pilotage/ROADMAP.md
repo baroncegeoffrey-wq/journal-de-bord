@@ -9,11 +9,11 @@
 
 ## Les semaines
 
-- [ ] **D-002** : semaine 05, Airtable · lot L-002 (après le récit de Geoffrey, vendredi 30 octobre)
+- [ ] **D-002** : semaine 05, Airtable, UML et Mermaid · lot L-002 (après le récit de Geoffrey, vendredi 30 octobre)
 
 ## Améliorations prévues
 
-- [ ] **D-003** : clins d'œil à Akira et petites animations · lot L-003 (maquette v3 à faire)
+- [ ] **D-003** : clins d'œil à Akira (Néo-Paris, traînée rouge, glitch, curseur) et barre de progression du bootcamp · lot L-003
 - [ ] Idée : un vrai nom de domaine (environ 10 € par an), pas encore décidé
 - [ ] Idée : passer « EN FORMATION » à « EN ALTERNANCE » en janvier 2027, pas encore décidé
 

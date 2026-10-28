@@ -83,24 +83,62 @@ footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--ligne);color:
   .barre .droite{display:none}
 }
 .note-maquette{border:1px dashed var(--cyan);color:var(--cyan);padding:10px 14px;font-size:14px;margin-top:20px}
+
+/* ===== V3 : clins d'oeil et animations (D-003) : A neo-paris, C trainee, D rouge, E glitch survol, F curseur, H progression ===== */
+:root{--rouge:#FF1E2D}
+.repere{display:inline-block;font-family:"Share Tech Mono",monospace;font-size:11px;color:var(--fond);background:var(--magenta);padding:1px 6px;margin-left:8px;vertical-align:middle;letter-spacing:0;text-shadow:none;font-weight:400}
+.r-abs{position:absolute}
+.trainee .repere{animation:none}
+.barre .neo{color:var(--rouge)}
+.hero{position:relative}
+/* [F] curseur */
+.curseur{display:inline-block;width:.6em;height:1em;background:var(--cyan);vertical-align:-2px;margin-left:4px;animation:clignote 1s steps(1) infinite}
+@keyframes clignote{50%{opacity:0}}
+/* [C] trainee lumineuse */
+.trainee{position:relative;height:4px;margin-top:14px;max-width:760px}
+.trainee::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--rouge) 70%,#fff);box-shadow:0 0 12px var(--rouge),0 0 28px var(--rouge);transform-origin:left;animation:trainee 1.4s cubic-bezier(.2,.8,.2,1) .3s both}
+@keyframes trainee{0%{transform:scaleX(0);opacity:1}70%{opacity:1}100%{transform:scaleX(1);opacity:.85}}
+/* [E] glitch anime au survol */
+.nom{display:inline-block;cursor:default}
+.nom:hover{animation:glitch .35s steps(2) infinite}
+@keyframes glitch{
+ 0%{text-shadow:3px 0 var(--magenta),-3px 0 var(--cyan);transform:translate(0)}
+ 25%{text-shadow:-5px 1px var(--magenta),5px -1px var(--cyan);transform:translate(2px,-1px);clip-path:inset(10% 0 55% 0)}
+ 50%{text-shadow:4px -2px var(--rouge),-4px 2px var(--cyan);transform:translate(-2px,1px);clip-path:inset(0)}
+ 75%{text-shadow:-3px 0 var(--magenta),3px 0 var(--cyan);transform:translate(1px,0);clip-path:inset(60% 0 5% 0)}
+ 100%{text-shadow:3px 0 var(--magenta),-3px 0 var(--cyan);transform:translate(0);clip-path:inset(0)}}
+/* [H] progression */
+.sync{margin-top:26px;max-width:520px}
+.sync .lib{display:flex;justify-content:space-between;font-size:13px;color:var(--doux);margin-bottom:6px}
+.sync .lib b{color:var(--vert);font-weight:400}
+.sync .barres{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
+.sync .barres span{height:10px;background:var(--panneau2);border:1px solid var(--ligne)}
+.sync .barres span.ok{background:var(--vert);border-color:var(--vert);box-shadow:0 0 6px rgba(61,255,139,.6)}
+.sync .barres span.encours{background:var(--jaune);border-color:var(--jaune);animation:clignote 1.2s steps(1) infinite}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="page">
-  <!-- Maquette validée par Geoffrey le 2026-10-28 (v2). Fait foi pour L-001. -->
+  <!-- Maquette v3 validée par Geoffrey le 2026-10-28 (idées A, C, D, E, F, H). Fait foi pour L-003. -->
 
   <div class="barre mono">
-    <span>JDB://GEOFFREY.BARONCE</span>
+    <span>JDB://GEOFFREY.BARONCE <span class="neo">· NEO-PARIS 2026</span></span>
     <span class="droite statut">EN FORMATION</span>
   </div>
 
   <header class="hero">
-    <div class="surtitre mono">&gt; JOURNAL_DE_BORD.LOG</div>
+    <div class="surtitre mono">&gt; JOURNAL_DE_BORD.LOG<span class="curseur"></span></div>
     <h1><span class="ligne1">Journal de bord de</span><span class="nom">Geoffrey Baronce</span></h1>
+    <div class="trainee" aria-hidden="true"></div>
     <p>Ma reconversion dans l'IA et le no-code, semaine après semaine : ce que j'apprends en formation, ce que je construis, et ce qui coince.</p>
     <div class="infos">
       <span class="puce" style="color:var(--cyan)">AI Builder · Alegria</span>
       <span class="puce" style="color:var(--magenta)">Alternance MCI Group · janv. 2027</span>
+    </div>
+    <div class="sync mono">
+      <div class="lib"><span>SYNC FORMATION</span><b>05 / 13 SEMAINES</b></div>
+      <div class="barres"><span class="ok"></span><span class="ok"></span><span class="ok"></span><span class="ok"></span><span class="encours"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
   </header>
 

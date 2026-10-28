@@ -53,16 +53,32 @@ figcaption{font-size:14px;color:var(--doux);margin-top:8px}
 .nav a{flex:1;min-width:220px;text-decoration:none;background:var(--panneau);padding:14px 18px;color:var(--jaune);font-family:"Chakra Petch",sans-serif;font-weight:700;text-transform:uppercase}
 .nav a small{display:block;color:var(--doux);font-family:"Share Tech Mono",monospace;font-weight:400}
 .note-maquette{border:1px dashed var(--cyan);color:var(--cyan);padding:10px 14px;font-size:14px;margin-top:20px}
+
+/* ===== V3 (D-003) : C trainee sous le titre, D rouge, E glitch au survol ===== */
+:root{--rouge:#FF1E2D}
+.trainee{position:relative;height:3px;margin:2px 0 14px;max-width:560px}
+.trainee::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--rouge) 70%,#fff);box-shadow:0 0 10px var(--rouge),0 0 24px var(--rouge);transform-origin:left;animation:trainee 1.4s cubic-bezier(.2,.8,.2,1) .3s both}
+@keyframes trainee{0%{transform:scaleX(0);opacity:1}70%{opacity:1}100%{transform:scaleX(1);opacity:.85}}
+.entete h1{cursor:default}
+.entete h1:hover{animation:glitch .35s steps(2) infinite}
+@keyframes glitch{
+ 0%{text-shadow:2px 0 var(--magenta),-2px 0 var(--cyan);transform:translate(0)}
+ 25%{text-shadow:-4px 1px var(--magenta),4px -1px var(--cyan);transform:translate(2px,-1px);clip-path:inset(10% 0 55% 0)}
+ 50%{text-shadow:3px -2px var(--rouge),-3px 2px var(--cyan);transform:translate(-2px,1px);clip-path:inset(0)}
+ 75%{text-shadow:-2px 0 var(--magenta),2px 0 var(--cyan);transform:translate(1px,0);clip-path:inset(60% 0 5% 0)}
+ 100%{text-shadow:2px 0 var(--magenta),-2px 0 var(--cyan);transform:translate(0);clip-path:inset(0)}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important}}
 </style>
 </head>
 <body>
 <div class="page">
-  <!-- Maquette validée par Geoffrey le 2026-10-28 (v2). Fait foi pour L-001. -->
+  <!-- Maquette v3 validée par Geoffrey le 2026-10-28 (traînée C, rouge D, glitch E). Fait foi pour L-003. -->
   <a class="retour mono" href="accueil.html">&lt;&lt; TOUTES LES SEMAINES</a>
 
   <header class="entete">
     <span class="badge coupe">Semaines 01 à 04</span>
     <h1>Les bases : HTML, CSS et Webflow</h1>
+    <div class="trainee" aria-hidden="true"></div>
     <div class="date mono">28.09 → 23.10.2026</div>
     <p class="resume">Un mois pour poser les fondations : coder un site à la main, puis refaire la même chose sans une ligne de code avec Webflow.</p>
     <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">WEBFLOW</span></div>
