@@ -3,5 +3,6 @@
   "etiquettes": [
     { "texte": "AI Builder · Alegria", "couleur": "cyan" },
     { "texte": "Alternance MCI Group · janv. 2027", "couleur": "magenta" }
-  ]
+  ],
+  "formation": { "debut": "2026-09-28", "fin": "2026-12-24" }
 }
