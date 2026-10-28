@@ -9,7 +9,7 @@
 
 ## Les semaines
 
-- [ ] **D-002** : semaine 05, Airtable, UML et Mermaid · lot L-002 (après le récit de Geoffrey, vendredi 30 octobre)
+- [ ] **D-002** : semaines 03 à 05 (Merise, UML, Airtable) et récap corrigé en semaines 01-02 · lot L-002
 
 ## Améliorations prévues
 

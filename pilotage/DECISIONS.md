@@ -79,21 +79,63 @@ Ce qui est fait en attendant : ...
 
 ---
 
-### D-002 : Semaine 05, Airtable
-**Date** : 2026-10-28 · **Statut** : brouillon · **Lot** : L-002 · **Type** : contenu
+### D-002 : Semaines 03 à 05 (Merise, UML, Airtable) et correction du récap en « Semaines 01-02 »
+**Date** : 2026-10-28 · **Statut** : prête · **Lot** : L-002 · **Type** : contenu
 
 **Quoi** :
-- La Semaine 05 passe de « à venir » à « publiée », avec ses 4 rubriques et ses captures, au modèle existant.
+- **Correction** : d'après l'agenda officiel Alegria, HTML/CSS = semaine 1 et Webflow = semaine 2 ; Merise/UML et Airtable ont commencé en semaine 3. Le récap publié « Semaines 01 à 04 » devient « Semaines 01 à 02 », du 28.09 au 09.10.2026.
+- **Nouvelle entrée publiée** « Semaines 03 à 05 : Merise, UML et Airtable », du 12.10 au 28.10.2026, avec ses 4 rubriques et 5 captures. Elle apparaît en haut de l'accueil.
+- **La carte « à venir » Semaine 05 « Airtable : penser en données » disparaît** (son contenu est couvert par la nouvelle entrée). Aucune nouvelle carte « à venir » pour l'instant : la prochaine entrée (logique algorithmique, 29-30.10) sera décidée vendredi.
+- Le reste du site ne change pas.
 
-**Pourquoi** : c'est la première semaine sur la partie qui intéresse le plus Geoffrey (données et automatisation), donc la plus utile pour son maître d'apprentissage.
+**Pourquoi** : publier tout de suite la partie la plus intéressante pour le maître d'apprentissage, et que le journal colle au vrai calendrier de la formation.
 **Couches** : Contenu.
 **Maquette** : aucune (contenu au modèle existant).
-**Textes** : à écrire avec Geoffrey en fin de semaine (vendredi 30 octobre), à partir de son récit et de ses captures.
-**Déjà noté** : la semaine couvre aussi **UML** (schématiser la logique d'un système) et **Mermaid** (dessiner ces schémas à partir de texte), vus avant Airtable : l'angle est « avant de construire, j'ai appris à dessiner la logique ». Geoffrey fournira du code Mermaid et des captures. Outils de la carte à prévoir : Airtable, UML, Mermaid (Make arrive la semaine suivante).
-**Actions destructives** : aucune.
-**C'est fini quand** : à compléter.
+**Textes** (validés par Geoffrey, à reprendre mot pour mot) :
 
-**Manque pour passer en `prête`** : le récit de Geoffrey, ses captures dans `captures-a-trier/`, les textes validés.
+*Fichier `semaines-01-02.md` (ex-`semaines-01-04.md`)* : seuls ces champs changent, tout le reste reste identique.
+- numero « 01-02 » · fin 2026-10-09
+- resume : « Deux semaines pour poser les fondations : coder un site à la main, puis refaire la même chose sans une ligne de code avec Webflow. »
+- suite : « Merise, UML et Airtable : la partie données, celle qui m'intéresse le plus. »
+- chemins des 3 captures : `semaines-01-02/akira-code.png`, `semaines-01-02/webflow-editeur.png`, `semaines-01-02/webflow-mobile.png` (légendes inchangées).
+
+*Fichier `semaines-03-05.md`* :
+- numero « 03-05 » · ordre 2 · debut 2026-10-12 · fin 2026-10-28 · statut publiee
+- titre : « Merise, UML et Airtable : penser en données »
+- resume : « Avant de construire, apprendre à dessiner la logique : modéliser les données avec Merise et UML, puis tout monter dans Airtable avec des formules, des automatisations et des interfaces. »
+- outils : Merise, UML, Whimsical, Miro, Airtable
+- Ce que j'ai appris :
+  - « Une journée RGPD : ce qu'on a le droit de faire (ou pas) avec des données personnelles. »
+  - « Merise et UML : découper un sujet en tables, choisir les bons champs, et relier les tables avec les bonnes cardinalités (1/N, N/N). Schémas faits sur Whimsical et Miro. »
+  - « Airtable : les tables liées, les champs lookup et rollup, et les formules (conditions, dates, textes). »
+  - « Les automatisations : un déclencheur, des conditions, une boucle « pour chaque », puis un e-mail, un message Slack, une ligne Google Sheets ou un événement d'agenda. »
+  - « Les interfaces et les formulaires : donner une vraie appli aux utilisateurs, sans leur montrer la base. »
+- Ce que j'ai construit :
+  - « Une série d'exercices de modélisation : fête foraine, salle de sport, plateforme de musique, plateforme d'e-learning. »
+  - « La base d'un salon fictif, le « NoCode Summit » : conférences, intervenants, invités, inscriptions et salles, avec un taux de remplissage et un statut calculés, et des notifications automatiques. »
+  - « Mon projet fil rouge : un outil de gestion de cours (étudiants, cours, sessions, présences). Les sessions se créent toutes seules, chaque étudiant reçoit un e-mail pour confirmer sa présence, et tout se suit dans une interface et un calendrier. »
+- Ce qui a coincé :
+  - « Les relations et les cardinalités : savoir quand un simple lien suffit et quand il faut une table de liaison (un N/N). J'ai refait mes schémas plusieurs fois avant que tout se tienne. »
+- La suite :
+  - « Jeudi et vendredi : la logique algorithmique, pour apprendre à penser comme un programme. »
+- Captures (dans cet ordre, déjà recadrées et floutées par le chef de projet, dans `captures-a-trier/semaines-03-05/` du dossier principal) :
+  1. `1-merise-mcd.png` → `merise-mcd.png` : « Mon schéma Merise du projet fil rouge, avec les cardinalités »
+  2. `2-schema-whimsical.png` → `schema-whimsical.png` : « Le modèle du NoCode Summit, dessiné sur Whimsical »
+  3. `3-airtable-formules.png` → `airtable-formules.png` : « Les conférences : taux de remplissage et statut calculés par des formules »
+  4. `4-automatisation-email.png` → `automatisation-email.png` : « L'automatisation qui envoie le formulaire de présence à chaque étudiant »
+  5. `5-interface-cours.png` → `interface-cours.png` : « L'interface « Cours » du projet fil rouge (données de test) »
+
+**Actions destructives** (autorisées par Geoffrey, nommées explicitement) :
+- Renommer `src/content/semaines/semaines-01-04.md` en `semaines-01-02.md` : l'adresse `/journal-de-bord/semaines/semaines-01-04/` disparaît, remplacée par `/journal-de-bord/semaines/semaines-01-02/`.
+- Déplacer `public/captures/semaines-01-04/` vers `public/captures/semaines-01-02/` (les 3 mêmes fichiers).
+- Supprimer `src/content/semaines/semaine-05.md` (la carte « à venir »).
+Rien d'autre n'est supprimé. Les originaux de `captures-a-trier/` restent en place.
+
+**C'est fini quand** :
+- En ligne, l'accueil montre, de haut en bas : « Semaines 03-05 » (publiée, cliquable), puis « Semaines 01-02 » ; plus de carte « Semaine 05 à venir ».
+- La page `/journal-de-bord/semaines/semaines-03-05/` affiche les textes ci-dessus mot pour mot et les 5 captures, qui se chargent en ligne ; la navigation va de 03-05 à 01-02 et inversement.
+- La page `/journal-de-bord/semaines/semaines-01-02/` affiche « Semaines 01 à 02 », 28.09 → 09.10.2026, le nouveau résumé et ses 3 captures.
+- Les 5 nouvelles captures font moins de 500 Ko chacune ; `npm run build` est vert ; la barre « SYNC FORMATION » n'a pas bougé.
 
 **Compte rendu** (rempli par le chef) :
 

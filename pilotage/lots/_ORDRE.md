@@ -7,7 +7,7 @@
 |---|---|---|---|---|---|---|
 | 1 | L-001 | Site en ligne : accueil + semaines 01 à 04 | D-001 | livré | rien | Brief : `L-001-accueil-semaines-01-04.md`. Couches Site puis Contenu. |
 | 2 | L-003 | Clins d'œil Akira et animations | D-003 | livré | L-001 | Brief : `L-003-clins-oeil-animations.md`. Site puis Contenu. Passe avant L-002 (prêt plus tôt). |
-| 3 | L-002 | Semaine 05 : Airtable, UML, Mermaid | D-002 | brouillon | L-003 | Contenu seul. Attend le récit de Geoffrey (vendredi 30 octobre). Attend la fusion de L-003 (les deux touchent `src/data/`). |
+| 3 | L-002 | Semaines 03-05 : Merise, UML, Airtable + correction 01-02 | D-002 | prêt | L-003 | Brief : `L-002-semaines-03-05.md`. Contenu seul. |
 
 **Statuts** : `brouillon` (décisions pas encore prêtes) · `prêt` (on peut lancer) · `en cours` · `livré` · `bloqué` (voir les questions ouvertes de `DECISIONS.md`).
 
