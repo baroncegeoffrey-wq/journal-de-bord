@@ -23,7 +23,7 @@ Détail des dossiers dans `CHEF-DE-CHANTIER.md` et dans le `CLAUDE.md` racine.
 
 ## Les fichiers
 
-Le `CLAUDE.md` de la racine décrit **ce qu'est** le site et les règles de chaque couche.
+À la racine : `CLAUDE.md` (le règlement du chantier : comment on travaille ici, les règles de chaque couche, la stack et le ton) et `PROJECT-CONTEXT.md` (le brief vivant : ce qu'est le site aujourd'hui, mis à jour par le chef de chantier après chaque lot livré). On ne journalise ni dans l'un ni dans l'autre : l'historique et le pourquoi vont dans `DECISIONS.md`.
 
 Le dossier `pilotage/` décrit **ce qu'on décide et comment on construit** :
 

@@ -21,6 +21,6 @@
 
 > Section permanente : bugs et petits ajustements découverts en route.
 
-- [ ] Ajouter `src/lib/` à la liste des fichiers de la couche Site dans le `CLAUDE.md` racine (fichier créé au L-001). Pour le chef de projet.
-- [ ] Node.js est installé dans `~/.local/node` mais pas dans le PATH permanent : chaque session doit faire `export PATH="$HOME/.local/node/bin:$PATH"`. À rendre permanent (ligne dans `~/.profile`) si Geoffrey l'autorise, ou à noter dans le `CLAUDE.md`.
+- [x] Ajouter `src/lib/` à la liste des fichiers de la couche Site dans le `CLAUDE.md` racine (fichier créé au L-001). Pour le chef de projet. Fait au passage au modèle v3 (2026-10-28).
+- [x] Node.js est installé dans `~/.local/node` mais pas dans le PATH permanent : chaque session doit faire `export PATH="$HOME/.local/node/bin:$PATH"`. À rendre permanent (ligne dans `~/.profile`) si Geoffrey l'autorise, ou à noter dans le `CLAUDE.md`. Noté dans le `CLAUDE.md` (partie 5) au passage au modèle v3 (2026-10-28).
 - [ ] Avertissement GitHub : l'étiquette `ubuntu-latest` du workflow « Deploy » passe à Ubuntu 26. Rien à faire tant que le déploiement reste vert.
