@@ -1,8 +1,11 @@
-/* Styles communs, repris de la maquette v2 (resources/screens/). */
+/* Styles communs, repris de la maquette v3 (resources/screens/). */
 :root {
   --fond: #08080F; --panneau: #11111B; --panneau2: #171726; --ligne: #2A2A40;
   --texte: #ECEAF4; --doux: #9896B0;
   --jaune: #FCEE0A; --cyan: #00F0FF; --magenta: #FF2A6D; --vert: #3DFF8B;
+  /* V3 (D-003) : rouge néon réservé aux clins d'œil, bout blanc de la traînée, halo vert de la barre */
+  --rouge: #FF1E2D; --blanc: #FFFFFF;
+  --halo-vert: color-mix(in srgb, var(--vert) 60%, transparent);
   --coin: 14px;
   color-scheme: dark;
 }
@@ -75,6 +78,9 @@ a.coupe:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--jaune);
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
+
+/* Clignotement (curseur, case en cours de la barre SYNC FORMATION) */
+@keyframes clignote { 50% { opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

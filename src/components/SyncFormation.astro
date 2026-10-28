@@ -1,0 +1,31 @@
+---
+// Barre « SYNC FORMATION » (D-003, idée H), calculée au build à partir des dates
+// de src/data/site.json. Reconstruite chaque lundi par le workflow Deploy.
+import { aujourdhuiDuBuild, progression } from '../lib/formation';
+
+interface Props {
+  debut: Date;
+  fin: Date;
+}
+
+const { debut, fin } = Astro.props;
+const { semaine, total, cases } = progression(debut, fin, aujourdhuiDuBuild());
+const deuxChiffres = (n: number) => String(n).padStart(2, '0');
+---
+
+<div class="sync mono" style={`--total: ${total}`}>
+  <div class="lib"><span>SYNC FORMATION</span><b>{deuxChiffres(semaine)} / {deuxChiffres(total)} SEMAINES</b></div>
+  <div class="barres" aria-hidden="true">
+    {cases.map((etat) => <span class:list={{ ok: etat === 'ok', encours: etat === 'encours' }} />)}
+  </div>
+</div>
+
+<style>
+  .sync { margin-top: 26px; max-width: 520px; }
+  .lib { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--doux); margin-bottom: 6px; }
+  .lib b { color: var(--vert); font-weight: 400; }
+  .barres { display: grid; grid-template-columns: repeat(var(--total), 1fr); gap: 4px; }
+  .barres span { height: 10px; background: var(--panneau2); border: 1px solid var(--ligne); }
+  .barres span.ok { background: var(--vert); border-color: var(--vert); box-shadow: 0 0 6px var(--halo-vert); }
+  .barres span.encours { background: var(--jaune); border-color: var(--jaune); animation: clignote 1.2s steps(1) infinite; }
+</style>

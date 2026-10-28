@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { lireJour } from './lib/formation';
 
 // Couleurs de la maquette utilisables dans les fichiers de données.
 const couleur = z.enum(['jaune', 'cyan', 'magenta', 'vert']);
@@ -99,6 +100,22 @@ const outils = defineCollection({
   }),
 });
 
+// Une date du bootcamp dans site.json : « AAAA-MM-JJ », lue à minuit UTC.
+const jourFormation = (champ: string) =>
+  z
+    .string({ error: `site.json : « formation.${champ} » manque (date au format "AAAA-MM-JJ").` })
+    .transform((valeur, ctx) => {
+      const d = lireJour(valeur);
+      if (!d) {
+        ctx.addIssue({
+          code: 'custom',
+          message: `site.json : « formation.${champ} » vaut "${valeur}", ce n'est pas une date valide au format "AAAA-MM-JJ".`,
+        });
+        return z.NEVER;
+      }
+      return d;
+    });
+
 // Textes de l'en-tête de l'accueil : un seul objet, rangé sous l'id « site ».
 const site = defineCollection({
   loader: file('src/data/site.json', {
@@ -109,6 +126,24 @@ const site = defineCollection({
     etiquettes: z
       .array(z.object({ texte, couleur }))
       .min(1, { error: 'Il faut au moins une étiquette dans site.json.' }),
+    // Dates du bootcamp, pour la barre « SYNC FORMATION » de l'accueil.
+    formation: z
+      .object(
+        { debut: jourFormation('debut'), fin: jourFormation('fin') },
+        {
+          error:
+            'site.json : il manque « formation », de la forme "formation": { "debut": "2026-09-28", "fin": "2026-12-24" }.',
+        },
+      )
+      .superRefine((f, ctx) => {
+        if (f.fin < f.debut) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['fin'],
+            message: 'site.json : « formation.fin » est avant « formation.debut ».',
+          });
+        }
+      }),
   }),
 });
 

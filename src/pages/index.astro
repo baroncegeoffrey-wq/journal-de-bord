@@ -3,6 +3,8 @@ import { getCollection, getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import TitreSection from '../components/TitreSection.astro';
 import CarteSemaine from '../components/CarteSemaine.astro';
+import Trainee from '../components/Trainee.astro';
+import SyncFormation from '../components/SyncFormation.astro';
 
 const site = await getEntry('site', 'site');
 if (!site) throw new Error('Fichier src/data/site.json manquant.');
@@ -13,17 +15,19 @@ const outils = (await getCollection('outils')).sort((a, b) => a.data.position - 
 
 <Base titre="Journal de bord de Geoffrey Baronce">
   <div class="barre mono">
-    <span>JDB://GEOFFREY.BARONCE</span>
+    <span>JDB://GEOFFREY.BARONCE <span class="neo">· NEO-PARIS 2026</span></span>
     <span class="droite statut">EN FORMATION</span>
   </div>
 
   <header class="hero">
-    <div class="surtitre mono">&gt; JOURNAL_DE_BORD.LOG</div>
+    <div class="surtitre mono">&gt; JOURNAL_DE_BORD.LOG<span class="curseur" aria-hidden="true"></span></div>
     <h1><span class="ligne1">Journal de bord de</span><span class="nom">Geoffrey Baronce</span></h1>
+    <Trainee variante="nom" />
     <p>{site.data.intro}</p>
     <ul class="infos">
       {site.data.etiquettes.map((e) => <li class:list={['puce', `c-${e.couleur}`]}>{e.texte}</li>)}
     </ul>
+    <SyncFormation debut={site.data.formation.debut} fin={site.data.formation.fin} />
   </header>
 
   <main>
@@ -79,6 +83,7 @@ const outils = (await getCollection('outils')).sort((a, b) => a.data.position - 
     display: flex; justify-content: space-between; align-items: center; gap: 12px;
     padding: 18px 0; border-bottom: 1px solid var(--ligne); font-size: 14px; color: var(--doux);
   }
+  .neo { color: var(--rouge); }
   .statut { color: var(--vert); }
   .statut::before {
     content: ""; display: inline-block; width: 8px; height: 8px; background: var(--vert);
@@ -90,7 +95,23 @@ const outils = (await getCollection('outils')).sort((a, b) => a.data.position - 
   .surtitre { color: var(--cyan); font-size: 15px; }
   h1 { font-size: clamp(40px, 8vw, 84px); margin-top: 12px; letter-spacing: .01em; }
   .ligne1 { display: block; color: var(--texte); font-size: .55em; }
-  .nom { display: block; color: var(--jaune); text-shadow: 3px 0 0 var(--magenta), -3px 0 0 var(--cyan); }
+  .nom { display: block; color: var(--jaune); text-shadow: 3px 0 0 var(--magenta), -3px 0 0 var(--cyan); cursor: default; }
+
+  /* Curseur de terminal qui clignote (D-003, F) */
+  .curseur {
+    display: inline-block; width: .6em; height: 1em; background: var(--cyan);
+    vertical-align: -2px; margin-left: 4px; animation: clignote 1s steps(1) infinite;
+  }
+
+  /* Glitch animé au survol du nom (D-003, E) : transform et clip-path ne changent pas la mise en page */
+  .nom:hover { animation: glitch-nom .35s steps(2) infinite; }
+  @keyframes glitch-nom {
+    0% { text-shadow: 3px 0 var(--magenta), -3px 0 var(--cyan); transform: translate(0); }
+    25% { text-shadow: -5px 1px var(--magenta), 5px -1px var(--cyan); transform: translate(2px, -1px); clip-path: inset(10% 0 55% 0); }
+    50% { text-shadow: 4px -2px var(--rouge), -4px 2px var(--cyan); transform: translate(-2px, 1px); clip-path: inset(0); }
+    75% { text-shadow: -3px 0 var(--magenta), 3px 0 var(--cyan); transform: translate(1px, 0); clip-path: inset(60% 0 5% 0); }
+    100% { text-shadow: 3px 0 var(--magenta), -3px 0 var(--cyan); transform: translate(0); clip-path: inset(0); }
+  }
   .hero p { max-width: 620px; color: var(--doux); font-size: 20px; margin: 20px 0 0; }
   .infos { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; padding: 0; list-style: none; }
   .puce {

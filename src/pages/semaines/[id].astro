@@ -3,6 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Rubrique from '../../components/Rubrique.astro';
 import Galerie from '../../components/Galerie.astro';
+import Trainee from '../../components/Trainee.astro';
 import { libelleNumero, plageDeDates, url } from '../../lib/site';
 
 type Semaine = CollectionEntry<'semaines'>;
@@ -49,6 +50,7 @@ const nav = [
     <header class="entete">
       <span class="badge coupe">{libelleNumero(s.numero)}</span>
       <h1>{s.titre}</h1>
+      <Trainee variante="titre" />
       <div class="date mono">{plageDeDates(s.debut, s.fin)}</div>
       <p class="resume">{s.resume}</p>
       <ul class="tags" aria-label="Outils">
@@ -99,7 +101,17 @@ const nav = [
     display: inline-block; background: var(--jaune); color: var(--fond); font-family: "Chakra Petch", sans-serif;
     font-weight: 700; padding: 4px 14px; font-size: 15px; text-transform: uppercase;
   }
-  h1 { font-size: clamp(32px, 6vw, 54px); margin: 16px 0 10px; text-shadow: 2px 0 0 var(--magenta), -2px 0 0 var(--cyan); }
+  h1 { font-size: clamp(32px, 6vw, 54px); margin: 16px 0 10px; text-shadow: 2px 0 0 var(--magenta), -2px 0 0 var(--cyan); cursor: default; }
+
+  /* Glitch animé au survol du titre (D-003, E) : transform et clip-path ne changent pas la mise en page */
+  h1:hover { animation: glitch-titre .35s steps(2) infinite; }
+  @keyframes glitch-titre {
+    0% { text-shadow: 2px 0 var(--magenta), -2px 0 var(--cyan); transform: translate(0); }
+    25% { text-shadow: -4px 1px var(--magenta), 4px -1px var(--cyan); transform: translate(2px, -1px); clip-path: inset(10% 0 55% 0); }
+    50% { text-shadow: 3px -2px var(--rouge), -3px 2px var(--cyan); transform: translate(-2px, 1px); clip-path: inset(0); }
+    75% { text-shadow: -2px 0 var(--magenta), 2px 0 var(--cyan); transform: translate(1px, 0); clip-path: inset(60% 0 5% 0); }
+    100% { text-shadow: 2px 0 var(--magenta), -2px 0 var(--cyan); transform: translate(0); clip-path: inset(0); }
+  }
   .date { color: var(--cyan); font-size: 15px; }
   .resume { font-size: 21px; margin: 18px 0 0; color: var(--texte); }
   .entete .tags { margin-top: 14px; }

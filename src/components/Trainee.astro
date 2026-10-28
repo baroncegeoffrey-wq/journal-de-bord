@@ -1,0 +1,29 @@
+---
+// Traînée lumineuse rouge (D-003, idée C) : se dessine de gauche à droite une fois,
+// puis reste affichée. Purement décorative.
+interface Props {
+  variante: 'nom' | 'titre';
+}
+
+const { variante } = Astro.props;
+---
+
+<div class:list={['trainee', variante]} aria-hidden="true"></div>
+
+<style>
+  .trainee { position: relative; }
+  .trainee.nom { height: 4px; margin-top: 14px; max-width: 760px; --halo1: 12px; --halo2: 28px; }
+  .trainee.titre { height: 3px; margin: 2px 0 14px; max-width: 560px; --halo1: 10px; --halo2: 24px; }
+  .trainee::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, var(--rouge) 70%, var(--blanc));
+    box-shadow: 0 0 var(--halo1) var(--rouge), 0 0 var(--halo2) var(--rouge);
+    transform-origin: left;
+    animation: trainee 1.4s cubic-bezier(.2, .8, .2, 1) .3s both;
+  }
+  @keyframes trainee {
+    0% { transform: scaleX(0); opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: scaleX(1); opacity: .85; }
+  }
+</style>
