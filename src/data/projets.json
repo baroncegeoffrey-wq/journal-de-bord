@@ -1,0 +1,16 @@
+[
+  {
+    "nom": "Pacity",
+    "etiquette": "App no-code",
+    "couleur": "cyan",
+    "outils": ["Airtable", "Softr"],
+    "description": "Une app de réservation d'espaces de coworking, construite avec Airtable et Softr : modèle de données, automatisations, interface."
+  },
+  {
+    "nom": "Golden Wing",
+    "etiquette": "Entreprise",
+    "couleur": "magenta",
+    "outils": ["Airtable", "Gestion"],
+    "description": "Une agence de production audiovisuelle que je co-fonde. Je m'occupe de la structure et de la gestion, avec un tableau de bord Airtable."
+  }
+]
