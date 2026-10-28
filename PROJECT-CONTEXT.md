@@ -18,8 +18,8 @@ Toutes les semaines ont le même format, pour se lire vite. Publier une semaine 
 | Page d'une semaine : 4 rubriques, captures, navigation précédente / suivante | x | | |
 | Semaine « à venir » : carte grisée sur l'accueil, sans page | x | | |
 | Capture ouverte en grand au clic (sans JavaScript) | x | | |
-| Récap des semaines 01 à 04 (publié) et semaine 05 (à venir) | x | | |
-| Contenu de la semaine 05, Airtable (D-002) | | x | |
+| Récap des semaines 01-02 (HTML, CSS, Webflow) et des semaines 03-05 (Merise, UML, Airtable), publiés (D-001, D-002) | x | | |
+| Entrée suivante : logique algorithmique (29-30.10), à décider | | x | |
 | Clins d'œil Akira (originaux) et petites animations (D-003) | x | | |
 | Barre « SYNC FORMATION » : avancement du bootcamp, recalculé chaque lundi (D-003) | x | | |
 | Nom de domaine personnel | | idée | |
@@ -51,11 +51,11 @@ Titres d'onglet : « Journal de bord de Geoffrey Baronce » (accueil), « <Titre
 
 ```yaml
 ---
-numero: "01-04"            # texte affiché dans le badge ("05", "01-04")
+numero: "01-02"            # texte affiché dans le badge ("05", "01-02")
 ordre: 1                   # sert au tri (le plus grand en haut de l'accueil)
 titre: "Les bases : HTML, CSS et Webflow"
 debut: 2026-09-28
-fin: 2026-10-23
+fin: 2026-10-09
 resume: "Une ou deux phrases."
 outils: ["HTML", "CSS", "Webflow"]
 statut: publiee            # publiee | a-venir (a-venir = carte grisée sur l'accueil, pas de page)
@@ -64,7 +64,7 @@ construit: ["..."]         # rubrique 02, jaune
 coince: ["..."]            # rubrique 03, magenta
 suite: ["..."]             # rubrique 04, vert
 captures:
-  - fichier: "semaines-01-04/akira-code.png"   # relatif à public/captures/
+  - fichier: "semaines-01-02/akira-code.png"   # relatif à public/captures/
     legende: "Le code HTML de la page Akira"
 ---
 ```
@@ -93,5 +93,4 @@ captures:
 
 ## Décisions ouvertes
 
-- Semaine 05 : textes et captures à écrire avec Geoffrey (voir D-002).
 - Nom de domaine et passage à « EN ALTERNANCE » : idées de la roadmap, pas encore décidées.

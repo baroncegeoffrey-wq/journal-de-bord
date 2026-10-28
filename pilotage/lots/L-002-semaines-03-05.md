@@ -50,14 +50,14 @@ Le maître d'apprentissage de Geoffrey voit enfin la partie qui compte : comment
 
 ## État du lot (tenu par le chef de chantier)
 
-- **Statut** : en cours (session Contenu)
-- **Branche / worktree** : `lot/semaines-03-05` · `.worktrees/semaines-03-05`
+- **Statut** : livré et en ligne (2026-10-28)
+- **Branche / worktree** : `lot/semaines-03-05` · `.worktrees/semaines-03-05` (supprimé après fusion)
 - **Ports** : 4341
 - **Comptes de test créés** : aucun (site sans compte)
-- **Sessions lancées** : Journal de bord | Contenu | L-002
-- **Fait** : étape 0 (commit [projet] 1e5f274 poussé) ; sessions L-003 déjà archivées ; branche et worktree créés ; D-002 en cours ; les 5 captures relues par le chef (téléphones et e-mails floutés).
-- **Reste à faire** : session Contenu, vérification (accueil, 2 pages semaine, 1280 / 390 px, captures en ligne), réponse de Geoffrey sur les noms visibles dans la capture 3, fusion, contrôle de vie, mises à jour finales.
-- **Bloquant** : rien pour la session ; la fusion attend la réponse de Geoffrey sur la capture 3.
+- **Sessions lancées** : Journal de bord | Contenu | L-002 (commit c98bd7e)
+- **Fait** : étape 0 (1e5f274) ; sessions L-003 déjà archivées ; captures relues (noms de la capture 3 confirmés inventés par Geoffrey) ; couche Contenu ; vérification 1280 / 390 px ; fusion dans main ; Deploy vert ; contrôle de vie en ligne OK (accueil, 2 pages semaine, 8 captures, ancienne adresse 01-04 en 404 comme prévu) ; DECISIONS, _ORDRE, ROADMAP et PROJECT-CONTEXT à jour.
+- **Reste à faire** : test en vrai par Geoffrey (ordinateur et téléphone) ; archiver la session de couche si Geoffrey le veut.
+- **Bloquant** : rien
 
 ---
 

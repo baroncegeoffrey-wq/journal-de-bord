@@ -80,7 +80,7 @@ Ce qui est fait en attendant : ...
 ---
 
 ### D-002 : Semaines 03 à 05 (Merise, UML, Airtable) et correction du récap en « Semaines 01-02 »
-**Date** : 2026-10-28 · **Statut** : en cours · **Lot** : L-002 · **Type** : contenu
+**Date** : 2026-10-28 · **Statut** : livrée · **Lot** : L-002 · **Type** : contenu
 
 **Quoi** :
 - **Correction** : d'après l'agenda officiel Alegria, HTML/CSS = semaine 1 et Webflow = semaine 2 ; Merise/UML et Airtable ont commencé en semaine 3. Le récap publié « Semaines 01 à 04 » devient « Semaines 01 à 02 », du 28.09 au 09.10.2026.
@@ -138,6 +138,12 @@ Rien d'autre n'est supprimé. Les originaux de `captures-a-trier/` restent en pl
 - Les 5 nouvelles captures font moins de 500 Ko chacune ; `npm run build` est vert ; la barre « SYNC FORMATION » n'a pas bougé.
 
 **Compte rendu** (rempli par le chef) :
+- **Livré et en ligne le 2026-10-28** : https://baroncegeoffrey-wq.github.io/journal-de-bord/ (workflow « Deploy » vert, run 40722562682).
+- Commit : `c98bd7e` [contenu] (renommages par `git mv`, `semaine-05.md` supprimé, `semaines-03-05.md` créé, 5 captures), plus les commits [chef] de suivi.
+- Critères vérifiés en ligne : l'accueil montre « 03-05 » puis « 01-02 », plus de carte « à venir » ; `/semaines/semaines-03-05/` et `/semaines/semaines-01-02/` répondent, avec leurs textes mot pour mot (comparés à cette décision) et leurs 8 captures qui se chargent ; navigation 03-05 ↔ 01-02 ; `/semaines/semaines-01-04/` renvoie une page introuvable (accepté) ; barre « SYNC FORMATION » inchangée (`05 / 13`) ; 1280 et 390 px sans défilement horizontal ; `npm run build` vert.
+- Captures publiées (copies identiques aux originaux, aucune recompression) : merise-mcd 943 px / 41 Ko, schema-whimsical 925 px / 72 Ko, airtable-formules 1600 px / 462 Ko, automatisation-email 880 px / 31 Ko, interface-cours 1235 px / 121 Ko. Originaux laissés dans `captures-a-trier/`.
+- Relecture des captures par le chef : téléphones et e-mails floutés ; la capture « airtable-formules » montre des noms d'invités en clair : Geoffrey a confirmé que ce sont des noms inventés (données d'exercice), publiée telle quelle.
+- Écarts : aucun. Textes écrits par la session : aucun.
 
 ---
 
