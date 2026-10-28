@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { plageDeDates, url } from '../lib/site';
+
+interface Props {
+  semaine: CollectionEntry<'semaines'>;
+}
+
+const { semaine } = Astro.props;
+const { numero, titre, debut, fin, resume, outils, statut } = semaine.data;
+const publiee = statut === 'publiee';
+const Balise = publiee ? 'a' : 'div';
+const lien = publiee ? { href: url(`semaines/${semaine.id}/`) } : {};
+---
+
+<Balise class:list={['semaine', 'coupe', { avenir: !publiee }]} {...lien}>
+  {publiee && <span class="fleche mono" aria-hidden="true">LIRE &gt;&gt;</span>}
+  <div class:list={['num', { long: numero.length > 3 }]} aria-hidden="true"><small>SEM.</small><b>{numero}</b></div>
+  <div class="contenu">
+    <h3><span class="sr-only">Semaine {numero} : </span>{titre}</h3>
+    <div class="date mono">
+      {plageDeDates(debut, fin)}{!publiee && <> · CHARGEMENT…</>}
+    </div>
+    <p>{resume}</p>
+    <ul class="tags" aria-label="Outils">
+      {outils.map((outil) => <li class="tag">{outil}</li>)}
+    </ul>
+  </div>
+</Balise>
+
+<style>
+  .semaine {
+    position: relative; display: grid; grid-template-columns: 96px 1fr; gap: 20px;
+    background: var(--panneau); padding: 22px; text-decoration: none;
+    border-left: 3px solid var(--jaune); transition: transform .15s, background .15s;
+  }
+  a.semaine:hover { transform: translateX(4px); background: var(--panneau2); }
+  .contenu { min-width: 0; }
+  .num {
+    background: var(--jaune); color: var(--fond); display: flex; flex-direction: column;
+    justify-content: center; align-items: center; padding: 12px 4px;
+    font-family: "Chakra Petch", sans-serif; font-weight: 700; align-self: start; min-height: 84px;
+  }
+  .num small { font-family: "Share Tech Mono", monospace; font-size: 12px; }
+  .num b { font-size: 30px; line-height: 1; white-space: nowrap; }
+  h3 { font-size: 24px; }
+  a.semaine h3 { padding-right: 84px; }
+  .date { color: var(--cyan); font-size: 14px; margin-top: 4px; }
+  p { margin: 8px 0 12px; color: var(--doux); }
+  .avenir { border-left-color: var(--ligne); opacity: .7; }
+  .avenir .num { background: transparent; color: var(--doux); border: 1px dashed var(--doux); }
+  .fleche { position: absolute; right: 22px; top: 22px; color: var(--jaune); }
+
+  @media (max-width: 560px) {
+    .semaine { grid-template-columns: 68px 1fr; gap: 14px; padding: 16px; }
+    .num { min-height: 68px; }
+    .num b { font-size: 24px; }
+    /* Un numéro long (« 01-04 ») doit tenir dans la colonne de 68 px */
+    .num.long b { font-size: 20px; }
+    .fleche { display: none; }
+    a.semaine h3 { padding-right: 0; }
+  }
+</style>

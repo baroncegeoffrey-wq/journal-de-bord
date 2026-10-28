@@ -1,0 +1,30 @@
+---
+interface Props {
+  code: string;
+  titre: string;
+  couleur: 'jaune' | 'cyan' | 'magenta' | 'vert';
+  elements: string[];
+}
+
+const { code, titre, couleur, elements } = Astro.props;
+---
+
+<section class:list={['rubrique', 'coupe', `c-${couleur}`]}>
+  <div class="entete-r">
+    <span class="code mono" aria-hidden="true">{code}</span>
+    <h2>{titre}</h2>
+  </div>
+  <ul>
+    {elements.map((element) => <li>{element}</li>)}
+  </ul>
+</section>
+
+<style>
+  .rubrique { margin-top: 24px; background: var(--panneau); padding: 22px 24px; border-left: 4px solid var(--c); }
+  .entete-r { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .code { font-size: 13px; padding: 2px 8px; color: var(--fond); background: var(--c); }
+  h2 { font-size: 22px; }
+  ul { margin: 8px 0 0; padding-left: 0; list-style: none; }
+  li { margin: 6px 0; padding-left: 22px; position: relative; }
+  li::before { content: ">"; position: absolute; left: 0; font-family: "Share Tech Mono", monospace; color: var(--c); }
+</style>

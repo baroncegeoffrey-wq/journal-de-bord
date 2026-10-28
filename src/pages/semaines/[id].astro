@@ -1,0 +1,121 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Rubrique from '../../components/Rubrique.astro';
+import Galerie from '../../components/Galerie.astro';
+import { libelleNumero, plageDeDates, url } from '../../lib/site';
+
+type Semaine = CollectionEntry<'semaines'>;
+
+// Une page par semaine publiée. Les voisines (même « à venir ») servent à la navigation.
+export async function getStaticPaths() {
+  const toutes = (await getCollection('semaines')).sort((a, b) => a.data.ordre - b.data.ordre);
+  return toutes
+    .map((semaine, i) => ({
+      params: { id: semaine.id },
+      props: { semaine, precedente: toutes[i - 1], suivante: toutes[i + 1] },
+    }))
+    .filter(({ props }) => props.semaine.data.statut === 'publiee');
+}
+
+interface Props {
+  semaine: Semaine;
+  precedente?: Semaine;
+  suivante?: Semaine;
+}
+
+const { semaine, precedente, suivante } = Astro.props;
+const s = semaine.data;
+const { Content } = await render(semaine);
+const aUnCorps = Boolean(semaine.body?.trim());
+
+const voisine = (v?: Semaine) =>
+  v
+    ? {
+        texte: `Sem. ${v.data.numero} : ${v.data.titre}`,
+        href: v.data.statut === 'publiee' ? url(`semaines/${v.id}/`) : undefined,
+      }
+    : undefined;
+const nav = [
+  { sens: 'precedente', libelle: '<< PRÉCÉDENTE', cible: voisine(precedente) },
+  { sens: 'suivante', libelle: 'SUIVANTE >>', cible: voisine(suivante) },
+];
+---
+
+<Base titre={`${s.titre} · Journal de bord`} etroite>
+  <a class="retour mono" href={url()}>&lt;&lt; TOUTES LES SEMAINES</a>
+
+  <main>
+    <header class="entete">
+      <span class="badge coupe">{libelleNumero(s.numero)}</span>
+      <h1>{s.titre}</h1>
+      <div class="date mono">{plageDeDates(s.debut, s.fin)}</div>
+      <p class="resume">{s.resume}</p>
+      <ul class="tags" aria-label="Outils">
+        {s.outils.map((outil) => <li class="tag">{outil}</li>)}
+      </ul>
+    </header>
+
+    <Rubrique code="01" titre="Ce que j'ai appris" couleur="cyan" elements={s.appris ?? []} />
+    <Rubrique code="02" titre="Ce que j'ai construit" couleur="jaune" elements={s.construit ?? []} />
+    <Rubrique code="03" titre="Ce qui a coincé" couleur="magenta" elements={s.coince ?? []} />
+    <Rubrique code="04" titre="La suite" couleur="vert" elements={s.suite ?? []} />
+
+    {
+      aUnCorps && (
+        <div class="corps">
+          <Content />
+        </div>
+      )
+    }
+
+    <Galerie captures={s.captures ?? []} />
+  </main>
+
+  <nav class="nav" aria-label="Autres semaines">
+    {
+      nav.map(({ sens, libelle, cible }) =>
+        cible?.href ? (
+          <a class:list={['case', 'coupe', sens]} href={cible.href}>
+            <small>{libelle}</small>
+            {cible.texte}
+          </a>
+        ) : (
+          <div class:list={['case', 'coupe', 'inactive', sens]}>
+            <small>{libelle}</small>
+            {cible ? `${cible.texte} (à venir)` : 'Aucune'}
+          </div>
+        ),
+      )
+    }
+  </nav>
+</Base>
+
+<style>
+  .retour { display: inline-block; margin-top: 24px; color: var(--jaune); text-decoration: none; font-size: 15px; }
+
+  .entete { padding: 30px 0 6px; }
+  .badge {
+    display: inline-block; background: var(--jaune); color: var(--fond); font-family: "Chakra Petch", sans-serif;
+    font-weight: 700; padding: 4px 14px; font-size: 15px; text-transform: uppercase;
+  }
+  h1 { font-size: clamp(32px, 6vw, 54px); margin: 16px 0 10px; text-shadow: 2px 0 0 var(--magenta), -2px 0 0 var(--cyan); }
+  .date { color: var(--cyan); font-size: 15px; }
+  .resume { font-size: 21px; margin: 18px 0 0; color: var(--texte); }
+  .entete .tags { margin-top: 14px; }
+
+  /* Paragraphe libre facultatif, sous les rubriques */
+  .corps { margin-top: 24px; }
+  .corps :global(p) { margin: 0 0 12px; }
+  .corps :global(a) { color: var(--jaune); }
+
+  .nav { display: flex; gap: 12px; margin-top: 44px; flex-wrap: wrap; }
+  .case {
+    flex: 1; min-width: min(220px, 100%); text-decoration: none; background: var(--panneau); padding: 14px 18px;
+    color: var(--jaune); font-family: "Chakra Petch", sans-serif; font-weight: 700; text-transform: uppercase;
+  }
+  .case small { display: block; color: var(--doux); font-family: "Share Tech Mono", monospace; font-weight: 400; }
+  .case.suivante { text-align: right; }
+  .case.inactive { color: var(--doux); }
+  a.case:hover { background: var(--panneau2); }
+</style>

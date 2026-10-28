@@ -1,0 +1,45 @@
+---
+import { getEntry } from 'astro:content';
+import { url } from '../lib/site';
+import '../styles/global.css';
+
+interface Props {
+  titre: string;
+  etroite?: boolean;
+}
+
+const { titre, etroite = false } = Astro.props;
+const site = await getEntry('site', 'site');
+if (!site) throw new Error('Fichier src/data/site.json manquant.');
+const description = site.data.intro;
+const canonique = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titre}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonique} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={titre} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonique} />
+    <meta name="theme-color" content="#08080F" />
+    <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap"
+    />
+  </head>
+  <body>
+    <div class:list={['page', { etroite }]}>
+      <slot />
+    </div>
+  </body>
+</html>

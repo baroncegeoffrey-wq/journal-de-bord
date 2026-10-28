@@ -1,0 +1,131 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import TitreSection from '../components/TitreSection.astro';
+import CarteSemaine from '../components/CarteSemaine.astro';
+
+const site = await getEntry('site', 'site');
+if (!site) throw new Error('Fichier src/data/site.json manquant.');
+const semaines = (await getCollection('semaines')).sort((a, b) => b.data.ordre - a.data.ordre);
+const projets = (await getCollection('projets')).sort((a, b) => a.data.position - b.data.position);
+const outils = (await getCollection('outils')).sort((a, b) => a.data.position - b.data.position);
+---
+
+<Base titre="Journal de bord de Geoffrey Baronce">
+  <div class="barre mono">
+    <span>JDB://GEOFFREY.BARONCE</span>
+    <span class="droite statut">EN FORMATION</span>
+  </div>
+
+  <header class="hero">
+    <div class="surtitre mono">&gt; JOURNAL_DE_BORD.LOG</div>
+    <h1><span class="ligne1">Journal de bord de</span><span class="nom">Geoffrey Baronce</span></h1>
+    <p>{site.data.intro}</p>
+    <ul class="infos">
+      {site.data.etiquettes.map((e) => <li class:list={['puce', `c-${e.couleur}`]}>{e.texte}</li>)}
+    </ul>
+  </header>
+
+  <main>
+    <section aria-labelledby="titre-semaines">
+      <TitreSection index="01" titre="Les semaines" id="titre-semaines" />
+      <div class="semaines">
+        {semaines.map((semaine) => <CarteSemaine semaine={semaine} />)}
+      </div>
+    </section>
+
+    <section aria-labelledby="titre-projets">
+      <TitreSection index="02" titre="Mes projets" id="titre-projets" />
+      <div class="projets">
+        {
+          projets.map(({ data: projet }) => (
+            <article class:list={['projet', 'coupe', `c-${projet.couleur}`]}>
+              <div class="type mono">[ {projet.etiquette} ]</div>
+              <h3>{projet.nom}</h3>
+              <p>{projet.description}</p>
+              <ul class="tags" aria-label="Outils">
+                {projet.outils.map((outil) => <li class="tag">{outil}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="titre-outils">
+      <TitreSection index="03" titre="Mes outils" id="titre-outils" />
+      <ul class="outils">
+        {
+          outils.map(({ data: outil }) => (
+            <li class:list={['outil', 'coupe', `c-${outil.couleur}`]}>
+              {outil.nom}
+              <i aria-hidden="true" />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+
+  <footer class="mono">
+    <span>© GEOFFREY BARONCE</span>
+    <span>MAJ HEBDO // FIN DE TRANSMISSION</span>
+  </footer>
+</Base>
+
+<style>
+  /* Barre du haut */
+  .barre {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 18px 0; border-bottom: 1px solid var(--ligne); font-size: 14px; color: var(--doux);
+  }
+  .statut { color: var(--vert); }
+  .statut::before {
+    content: ""; display: inline-block; width: 8px; height: 8px; background: var(--vert);
+    margin-right: 8px; box-shadow: 0 0 8px var(--vert);
+  }
+
+  /* En-tête */
+  .hero { padding: 56px 0 36px; }
+  .surtitre { color: var(--cyan); font-size: 15px; }
+  h1 { font-size: clamp(40px, 8vw, 84px); margin-top: 12px; letter-spacing: .01em; }
+  .ligne1 { display: block; color: var(--texte); font-size: .55em; }
+  .nom { display: block; color: var(--jaune); text-shadow: 3px 0 0 var(--magenta), -3px 0 0 var(--cyan); }
+  .hero p { max-width: 620px; color: var(--doux); font-size: 20px; margin: 20px 0 0; }
+  .infos { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; padding: 0; list-style: none; }
+  .puce {
+    font-family: "Share Tech Mono", monospace; font-size: 14px; padding: 7px 14px;
+    border: 1px solid currentColor; text-transform: uppercase; color: var(--c);
+  }
+
+  /* Sections */
+  section { margin-top: 56px; }
+  .semaines { display: grid; gap: 16px; }
+
+  /* Projets */
+  .projets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr)); gap: 16px; }
+  .projet { background: var(--panneau); padding: 24px; border-top: 3px solid var(--c); }
+  .type { font-size: 13px; color: var(--c); text-transform: uppercase; }
+  .projet h3 { font-size: 28px; margin: 8px 0; }
+  .projet p { margin: 0 0 14px; color: var(--doux); }
+
+  /* Outils */
+  .outils {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px;
+    margin: 0; padding: 0; list-style: none;
+  }
+  .outil {
+    background: var(--panneau); padding: 14px 16px; display: flex; justify-content: space-between;
+    align-items: center; gap: 10px; font-family: "Chakra Petch", sans-serif; font-weight: 700; text-transform: uppercase;
+  }
+  .outil i { width: 8px; height: 8px; display: inline-block; flex: none; background: var(--c); }
+
+  footer {
+    margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--ligne); color: var(--doux);
+    font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  @media (max-width: 560px) {
+    .barre .droite { display: none; }
+  }
+</style>

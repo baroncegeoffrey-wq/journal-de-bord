@@ -1,0 +1,45 @@
+---
+import TitreSection from './TitreSection.astro';
+import { tailleImage, urlCapture } from '../lib/site';
+
+interface Props {
+  captures: { fichier: string; legende: string }[];
+}
+
+const images = Astro.props.captures.map((capture) => ({
+  ...capture,
+  src: urlCapture(capture.fichier),
+  ...tailleImage(capture.fichier),
+}));
+---
+
+<section class="captures" aria-labelledby="titre-images">
+  <TitreSection titre="En images" id="titre-images" petit />
+  <div class="grille">
+    {
+      images.map((image) => (
+        <figure class="coupe">
+          <a href={image.src} title="Voir la capture en grand">
+            <img src={image.src} alt={image.legende} width={image.largeur} height={image.hauteur} loading="lazy" decoding="async" />
+          </a>
+          <figcaption class="mono"><span aria-hidden="true">// </span>{image.legende}</figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .captures { margin-top: 40px; }
+  /* 240 px (260 dans la maquette) : 3 captures = 3 colonnes dans la page de 820 px */
+  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px; }
+  figure { margin: 0; background: var(--panneau); padding: 10px; }
+  a { display: block; }
+  a:focus-visible { outline-offset: -2px; }
+  img {
+    width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left;
+    display: block; border: 1px solid var(--ligne);
+  }
+  a:hover img { border-color: var(--jaune); }
+  figcaption { font-size: 14px; color: var(--doux); margin-top: 8px; }
+</style>

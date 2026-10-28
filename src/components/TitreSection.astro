@@ -1,0 +1,16 @@
+---
+interface Props {
+  titre: string;
+  index?: string;
+  id?: string;
+  petit?: boolean;
+}
+
+const { titre, index, id, petit = false } = Astro.props;
+---
+
+<div class:list={['titre-section', { petit }]}>
+  {index && <span class="idx mono" aria-hidden="true">{index}</span>}
+  <h2 id={id}>{titre}</h2>
+  <span class="trait" aria-hidden="true"></span>
+</div>
