@@ -20,7 +20,8 @@ Toutes les semaines ont le même format, pour se lire vite. Publier une semaine 
 | Capture ouverte en grand au clic (sans JavaScript) | x | | |
 | Récap des semaines 01 à 04 (publié) et semaine 05 (à venir) | x | | |
 | Contenu de la semaine 05, Airtable (D-002) | | x | |
-| Clins d'œil Akira (originaux) et petites animations (D-003) | | x | |
+| Clins d'œil Akira (originaux) et petites animations (D-003) | x | | |
+| Barre « SYNC FORMATION » : avancement du bootcamp, recalculé chaque lundi (D-003) | x | | |
 | Nom de domaine personnel | | idée | |
 | « EN FORMATION » qui devient « EN ALTERNANCE » en janvier 2027 | | idée | |
 | Thème clair | | | x |
@@ -39,8 +40,8 @@ Toutes les semaines ont le même format, pour se lire vite. Publier une semaine 
 
 | Écran | Maquette | Ce qu'on y fait |
 |---|---|---|
-| Accueil (`/journal-de-bord/`) | `resources/screens/accueil.html` | Barre façon terminal, en-tête (nom glitché, intro, 2 étiquettes), « 01 Les semaines » (cartes publiées cliquables, cartes « à venir » grisées), « 02 Mes projets », « 03 Mes outils », pied de page |
-| Semaine (`/journal-de-bord/semaines/<nom-du-fichier>/`) | `resources/screens/semaine.html` | Lien retour, badge, titre, dates, résumé, étiquettes, les 4 rubriques, texte libre facultatif, « En images », navigation précédente / suivante |
+| Accueil (`/journal-de-bord/`) | `resources/screens/accueil.html` | Barre façon terminal (`JDB://GEOFFREY.BARONCE · NEO-PARIS 2026`, ce dernier en rouge), en-tête (curseur qui clignote, nom glitché qui « bugge » au survol, traînée lumineuse rouge, intro, 2 étiquettes, barre « SYNC FORMATION »), « 01 Les semaines » (cartes publiées cliquables, cartes « à venir » grisées), « 02 Mes projets », « 03 Mes outils », pied de page |
+| Semaine (`/journal-de-bord/semaines/<nom-du-fichier>/`) | `resources/screens/semaine.html` | Lien retour, badge, titre (glitch au survol, traînée rouge dessous), dates, résumé, étiquettes, les 4 rubriques, texte libre facultatif, « En images », navigation précédente / suivante |
 
 Titres d'onglet : « Journal de bord de Geoffrey Baronce » (accueil), « <Titre de la semaine> · Journal de bord » (semaine). Favicon : carré jaune à coins coupés avec « GB ».
 
@@ -75,7 +76,7 @@ captures:
 
 **Les données de l'accueil** (dans `src/data/`, l'ordre du fichier est l'ordre affiché, pas d'`id` à écrire ; couleurs possibles : `jaune`, `cyan`, `magenta`, `vert`) :
 
-- `site.json` : `{ "intro": "...", "etiquettes": [{ "texte": "AI Builder · Alegria", "couleur": "cyan" }, ...] }`
+- `site.json` : `{ "intro": "...", "etiquettes": [{ "texte": "AI Builder · Alegria", "couleur": "cyan" }, ...], "formation": { "debut": "2026-09-28", "fin": "2026-12-24" } }`. Les dates de `formation` alimentent la barre « SYNC FORMATION » (13 semaines) ; changer la fin du bootcamp = corriger cette ligne. Le build échoue si elles manquent ou si fin < début.
 - `projets.json` : `[{ "nom", "etiquette", "couleur", "outils": [], "description" }]`
 - `outils.json` : `[{ "nom", "couleur" }]`
 
@@ -84,7 +85,8 @@ captures:
 ## Spécificités
 
 - Site 100 % statique, en français (`lang="fr"`), uniquement en sombre, style néon cyberpunk 100 % original.
-- Hébergé sous un sous-dossier : `https://baroncegeoffrey-wq.github.io/journal-de-bord/`. Mis en ligne automatiquement à chaque arrivée sur `main`.
+- Hébergé sous un sous-dossier : `https://baroncegeoffrey-wq.github.io/journal-de-bord/`. Mis en ligne automatiquement à chaque arrivée sur `main`, et reconstruit chaque lundi à 6 h UTC pour que la barre « SYNC FORMATION » avance.
+- Rouge néon `--rouge` réservé aux clins d'œil Akira (Néo-Paris, traînée, une ombre du glitch). Animations en CSS seul.
 - Lisible à 390 px (téléphone) et à 1280 px, sans défilement horizontal.
 - Accessibilité de base : un seul grand titre par page, texte alternatif sur chaque image, navigation au clavier, animations coupées si le lecteur le demande.
 - Aucun JavaScript côté navigateur, aucun service tiers, aucune donnée personnelle au-delà de ce qui est validé.
@@ -92,5 +94,4 @@ captures:
 ## Décisions ouvertes
 
 - Semaine 05 : textes et captures à écrire avec Geoffrey (voir D-002).
-- Clins d'œil Akira et animations : liste, maquette v3 et JavaScript autorisé ou non (voir D-003).
 - Nom de domaine et passage à « EN ALTERNANCE » : idées de la roadmap, pas encore décidées.

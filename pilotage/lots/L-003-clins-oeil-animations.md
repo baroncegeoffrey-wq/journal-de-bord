@@ -54,13 +54,13 @@ Le site garde exactement sa structure, mais il devient plus vivant et plus perso
 
 ## État du lot (tenu par le chef de chantier)
 
-- **Statut** : en cours (session Contenu)
-- **Branche / worktree** : `lot/clins-oeil-animations` · `.worktrees/clins-oeil-animations`
+- **Statut** : livré et en ligne (2026-10-28)
+- **Branche / worktree** : `lot/clins-oeil-animations` · `.worktrees/clins-oeil-animations` (supprimé après fusion)
 - **Ports** : 4351
 - **Comptes de test créés** : aucun (site sans compte)
-- **Sessions lancées** : Journal de bord | Site | L-003 (finie, commit 5d514c2) · Journal de bord | Contenu | L-003
-- **Fait** : étape 0 (commit [projet] a6d8e48 poussé) ; pas de worktree L-001 restant ; branche et worktree créés ; D-003 en cours ; couche Site livrée (5d514c2) ; build du worktree réparé (dépendances installées dans le dossier principal, voir roadmap).
-- **Reste à faire** : session Site, puis session Contenu (dates dans `site.json`), vérification (1280 / 390 px, reduced motion, dates forcées), fusion, lancement manuel du workflow, contrôle de vie, mises à jour finales.
+- **Sessions lancées** : Journal de bord | Site | L-003 (commit 5d514c2) · Journal de bord | Contenu | L-003 (commit 5fdc822)
+- **Fait** : étape 0 (a6d8e48) ; couches Site et Contenu ; vérification 1280 / 390 px, moins d'animations, dates forcées ; fusion dans main ; Deploy vert au push et au lancement manuel ; contrôle de vie en ligne OK (accueil, page semaine, 3 captures) ; DECISIONS, _ORDRE, ROADMAP et PROJECT-CONTEXT à jour.
+- **Reste à faire** : test en vrai par Geoffrey (ordinateur et téléphone) ; archiver les sessions de couche si Geoffrey le veut.
 - **Bloquant** : rien
 
 ---

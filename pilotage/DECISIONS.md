@@ -100,7 +100,7 @@ Ce qui est fait en attendant : ...
 ---
 
 ### D-003 : Clins d'œil à Akira et petites animations
-**Date** : 2026-10-28 · **Statut** : en cours · **Lot** : L-003 · **Type** : produit
+**Date** : 2026-10-28 · **Statut** : livrée · **Lot** : L-003 · **Type** : produit
 
 **Quoi** (idées A, C, D, E, F, H de la maquette v3, retenues par Geoffrey ; B « kanji » et G « apparition au défilement » écartées) :
 - **D, un rouge néon** `#FF1E2D`, nouvelle variable CSS `--rouge`, réservé aux clins d'œil (A et C, et une des ombres du glitch E). Pas utilisé ailleurs.
@@ -126,6 +126,12 @@ Ce qui est fait en attendant : ...
 - 1280 px et 390 px conformes à la maquette, sans défilement horizontal ; aucune couleur en dur (le rouge passe par `--rouge`) ; aucun JavaScript côté navigateur.
 
 **Compte rendu** (rempli par le chef) :
+- **Livré et en ligne le 2026-10-28** : https://baroncegeoffrey-wq.github.io/journal-de-bord/ (workflow « Deploy » vert : run 40716949353 au push, puis lancement manuel 40717264989 vert).
+- Commits : `5d514c2` [site] (2 composants nouveaux : `Trainee.astro`, `SyncFormation.astro` ; calcul dans `src/lib/formation.ts` ; aucune dépendance ajoutée), `5fdc822` [contenu] (`formation` dans `site.json`), plus les commits [chef] de suivi.
+- Critères vérifiés : en ligne, NEO-PARIS 2026 en rouge, curseur, traînée sous le nom et sous le titre de la semaine, glitch animé au survol ; barre `05 / 13 SEMAINES` (4 vertes, 1 jaune, 8 vides) le 28/10/2026 ; dates forcées (`JDB_DATE_TEST`, jamais utilisée par le workflow) : 2026-09-01 → `00 / 13` tout vide, 2027-01-15 → `13 / 13` tout vert sans clignotement ; build en échec avec message clair si `formation` manque ou si fin < début ; `schedule` le lundi 6 h UTC ajouté, `push` et `workflow_dispatch` gardés ; moins d'animations : rien ne bouge, traînée entière, case en cours jaune ; 1280 et 390 px sans défilement horizontal (13 cases de 24 px, 4 px d'écart) ; aucune couleur en dur ; aucune balise `<script>`.
+- Écarts assumés : avec « moins d'animations », la traînée reste à pleine opacité (la maquette finit à 0,85 après l'animation) ; le dernier jour (24/12) la 13e case est encore jaune, elle passe au vert à partir du 25/12 ; nouvelle variable `--blanc` (bout de la traînée) et `--halo-vert` (via `color-mix`) en plus de `--rouge`.
+- Textes écrits par les sessions : aucun.
+- Incident réglé en route : le build échouait dans `.worktrees/` (dépendances absentes du dossier principal), réglé par une installation des dépendances dans le dossier principal (rien de commité, voir la roadmap).
 
 <!-- Modèle à copier pour chaque décision :
 
