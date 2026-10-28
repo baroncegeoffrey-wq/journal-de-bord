@@ -13,7 +13,7 @@
 
 ## Améliorations prévues
 
-- [ ] **D-003** : clins d'œil à Akira (Néo-Paris, traînée rouge, glitch, curseur) et barre de progression du bootcamp · lot L-003
+- [~] **D-003** : clins d'œil à Akira (Néo-Paris, traînée rouge, glitch, curseur) et barre de progression du bootcamp · lot L-003
 - [ ] Idée : un vrai nom de domaine (environ 10 € par an), pas encore décidé
 - [ ] Idée : passer « EN FORMATION » à « EN ALTERNANCE » en janvier 2027, pas encore décidé
 

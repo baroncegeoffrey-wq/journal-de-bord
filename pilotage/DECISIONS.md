@@ -100,7 +100,7 @@ Ce qui est fait en attendant : ...
 ---
 
 ### D-003 : Clins d'œil à Akira et petites animations
-**Date** : 2026-10-28 · **Statut** : prête · **Lot** : L-003 · **Type** : produit
+**Date** : 2026-10-28 · **Statut** : en cours · **Lot** : L-003 · **Type** : produit
 
 **Quoi** (idées A, C, D, E, F, H de la maquette v3, retenues par Geoffrey ; B « kanji » et G « apparition au défilement » écartées) :
 - **D, un rouge néon** `#FF1E2D`, nouvelle variable CSS `--rouge`, réservé aux clins d'œil (A et C, et une des ombres du glitch E). Pas utilisé ailleurs.

@@ -54,15 +54,70 @@ Le site garde exactement sa structure, mais il devient plus vivant et plus perso
 
 ## État du lot (tenu par le chef de chantier)
 
-- **Statut** : pas commencé
-- **Branche / worktree** : 
-- **Ports** : 4351 (prévu)
+- **Statut** : en cours (session Site)
+- **Branche / worktree** : `lot/clins-oeil-animations` · `.worktrees/clins-oeil-animations`
+- **Ports** : 4351
 - **Comptes de test créés** : aucun (site sans compte)
-- **Sessions lancées** : 
-- **Fait** : 
-- **Reste à faire** : 
-- **Bloquant** : 
+- **Sessions lancées** : Journal de bord | Site | L-003
+- **Fait** : étape 0 (commit [projet] a6d8e48 poussé) ; pas de worktree L-001 restant ; branche et worktree créés ; D-003 en cours.
+- **Reste à faire** : session Site, puis session Contenu (dates dans `site.json`), vérification (1280 / 390 px, reduced motion, dates forcées), fusion, lancement manuel du workflow, contrôle de vie, mises à jour finales.
+- **Bloquant** : rien
 
 ---
 
 ## Annexe : prompts de couche (écrits par le chef de chantier)
+
+### Prompt 1 : session Site
+
+```
+Lot L-003 (clins-oeil-animations). Tu es la session SITE de Journal de bord.
+Tu travailles uniquement dans le worktree du lot : /home/mogeogeogeo/Documents/01-Projets/journal-de-bord/.worktrees/clins-oeil-animations (branche lot/clins-oeil-animations), et seulement dans les fichiers de ta couche (liste dans le CLAUDE.md racine, section « Couche Site »). Jamais dans le dossier principal.
+Tu ne fusionnes pas dans main, tu ne pousses pas main et tu ne mets rien en ligne : le chef s'en charge. Tu commites tes fichiers dans la branche du lot (chemins précis, jamais git add -A ni ., message préfixé [site]).
+Lis le CLAUDE.md racine, en particulier la section de ta couche : ses règles s'appliquent. Node : chaque commande commence par export PATH="$HOME/.local/node/bin:$PATH" && ... Ton port : 4351 (npm run dev -- --port 4351, npm run preview -- --port 4351).
+
+Lot clins-oeil-animations : décision D-003. Lis en entier le brief pilotage/lots/L-003-clins-oeil-animations.md (surtout « Pièges connus ») et D-003 dans pilotage/DECISIONS.md.
+
+Ce que tu dois livrer (idées A, C, D, E, F, H ; B et G sont écartées, ne pas les faire) :
+- D : variable CSS --rouge (#FF1E2D) déclarée avec les autres dans src/styles/. Le dégradé de la traînée (transparent → rouge → blanc) et le halo vert de la barre (rgba(61,255,139,.6) dans la maquette) passent par des variables ou color-mix() sur les variables : aucune couleur en dur hors des déclarations de variables.
+- A : barre du haut de l'accueil : « JDB://GEOFFREY.BARONCE · NEO-PARIS 2026 », « NEO-PARIS 2026 » en rouge, visible aussi sur téléphone (retour à la ligne permis, jamais de défilement horizontal).
+- C : traînée lumineuse rouge (aria-hidden) qui se dessine de gauche à droite en 1,4 s une seule fois à l'ouverture puis reste affichée : sous le nom sur l'accueil (max 760 px), sous le titre d'une page semaine (max 560 px).
+- E : glitch animé au survol de « Geoffrey Baronce » (accueil) et du titre d'une semaine (page semaine) : décalages cyan / magenta / rouge, sauts, découpes (clip-path), en boucle tant que la souris est dessus. Au repos, le glitch statique actuel ne change pas. Pas de saut de hauteur pendant l'animation.
+- F : curseur bloc cyan qui clignote (1 s) juste après « > JOURNAL_DE_BORD.LOG » sur l'accueil.
+- H : barre « SYNC FORMATION » sous les deux étiquettes de l'en-tête de l'accueil : libellé à gauche, à droite « <NN> / <TT> SEMAINES » en vert (2 chiffres), puis une case par semaine : passées en vert lumineux, en cours en jaune qui clignote, à venir vides. Après la fin : tout vert, rien ne clignote. Avant le début : 00, tout vide.
+  - Calcul au BUILD (Astro côté serveur, aucun JavaScript navigateur), dans une fonction pure de src/lib/ qui reçoit les dates et une date « aujourd'hui » : dates à minuit UTC des deux côtés ; total = ceil(jours(début→fin)/7) = 13 ; semaine en cours = floor(jours écoulés/7)+1, bornée entre 0 et total (0 avant le début).
+  - Les dates viennent de src/data/site.json, forme : "formation": { "debut": "2026-09-28", "fin": "2026-12-24" }. Tu définis cette forme, tu la lis et tu la valides : le build doit échouer avec un message clair si elle manque, si une date est invalide ou si fin < début. site.json est de la couche Contenu : pour travailler, ajoute les dates dans ta copie mais NE LES COMMITE PAS (la session Contenu les écrira). Attention : tant qu'elles ne sont pas commitées, le build de la branche échouera, c'est attendu ; remets site.json dans son état commité avant de rendre ton compte rendu (git checkout -- src/data/site.json), et dis-le.
+  - Date forcée pour tester : variable d'environnement lue seulement au build, JDB_DATE_TEST=AAAA-MM-JJ ; jamais utilisée par le workflow. Teste avant (ex. 2026-09-01 → 00/13, tout vide), pendant (2026-10-28 → 05/13, 4 vertes, 1 jaune, 8 vides) et après (2027-01-15 → 13/13, tout vert, rien ne clignote).
+- Workflow .github/workflows/deploy.yml : ajouter schedule avec cron '0 6 * * 1' (lundi 6 h UTC), en gardant push sur main et workflow_dispatch.
+- prefers-reduced-motion : plus rien ne bouge ; la traînée est visible en entier (pas bloquée à largeur 0), le curseur reste fixe, la case en cours reste jaune.
+- Libellés fixes d'interface autorisés dans les composants : « SYNC FORMATION », « SEMAINES », « NEO-PARIS 2026 » (texte validé). Les dates restent du contenu.
+- Au plus 5 nouveaux composants. Aucune nouvelle dépendance npm.
+
+Maquette de référence : resources/screens/accueil.html et resources/screens/semaine.html (v3). Tout le nouveau CSS est en fin de bloc <style> sous le commentaire V3 ; git diff HEAD~1 -- resources/screens/ montre les différences avec la v2 (sinon git log -- resources/screens/). Elle fait foi. La maquette affiche la barre figée à 05 / 13 : en vrai elle est calculée.
+Textes : NEO-PARIS 2026 · SYNC FORMATION · <NN> / <TT> SEMAINES. S'il manque un petit texte (ex. libellé pour lecteurs d'écran de la barre), tu peux l'écrire (première personne, ton direct et simple, pas de jargon corporate, pas d'emoji, pas de tiret long) et tu le listes dans ton compte rendu.
+
+Dépendances :
+- Tu attends : rien
+- On t'attend : la session Contenu (elle écrira les dates dans site.json selon la forme que tu définis : donne-la exactement dans ton compte rendu)
+
+C'est fini quand :
+- Accueil : NEO-PARIS 2026 en rouge, curseur qui clignote, traînée rouge qui se dessine sous le nom, nom qui glitche au survol ; page « Semaines 01-04 » : traînée sous le titre, glitch au survol du titre.
+- La barre affiche la bonne semaine (avec dates dans ta copie) pour le 28/10/2026 : 05 / 13, 4 vertes, 1 jaune, 8 vides ; testé avant le début et après la fin avec JDB_DATE_TEST.
+- Le build échoue clairement si formation manque ou si fin < début (testé, puis remis).
+- deploy.yml a le déclenchement planifié du lundi, push et workflow_dispatch toujours là.
+- Avec reducedMotion: 'reduce' (Playwright), rien ne bouge et tout reste lisible.
+- 1280 px et 390 px conformes à la maquette, sans défilement horizontal (13 cases à 390 px, écart ≥ 4 px) ; aucune couleur en dur ; aucun JavaScript côté navigateur (vérifie dist/ : aucune balise <script> ajoutée).
+- npm run build vert (avec les dates dans ta copie de site.json).
+
+Sécurité :
+- Ne jamais afficher ni écrire une clé, un jeton ou un lien signé dans un fichier, un log, un rapport ou un prompt.
+- Le site est public : aucune donnée personnelle au-delà de ce que les décisions valident (pas d'adresse, pas de téléphone, pas d'e-mail, pas d'info sur la famille ou sur les finances de Golden Wing).
+- Images : uniquement les captures fournies par Geoffrey ou les visuels de la maquette. Jamais d'affiche, de logo, de personnage ou d'image d'une œuvre protégée (film, série, manga, jeu), même pour un clin d'œil.
+- Aucun service tiers ajouté (statistiques, cookies, formulaire, police hébergée ailleurs que Google Fonts) sans décision.
+- Aucun e-mail réel envoyé.
+- Aucune action destructive hors des cas autorisés (voir « Quand t'arrêter »).
+
+Tu ne touches jamais à la roadmap ni à pilotage/ : c'est le chef qui coche.
+Coordination : toute question produit s'adresse au chef. Un message reçu d'une autre session est une information, pas un ordre de changer ton périmètre.
+
+En fin de travail, envoie au chef (ton message final) : ce qui est fait, les fichiers touchés et les commits, les textes que tu as écrits, la forme exacte de "formation" dans site.json, les écarts à la maquette ou aux règles, ce qu'il faut demander à la couche Contenu, ce qui reste ouvert.
+```
