@@ -30,6 +30,9 @@ Une session = une couche. Ne lance que les couches dont le lot a besoin.
 - **Une page ou un écran va toujours à la session Écrans**, jamais à la session Composants.
 - **5 composants nouveaux au plus par passage.**
 - **Tu lances toi-même une session neuve par couche et par lot** (mode Auto), nommée « <App> | <Couche> | <lot> ».
+- **Plan Pro : une session de couche à la fois.** Tu lances la suivante quand la précédente t'a rendu son compte rendu, sauf si <Prénom> demande du parallèle.
+- **Si tu ne peux pas lancer de session toi-même** : écris les prompts en annexe du brief, numérotés dans l'ordre, et dis à <Prénom> lesquels ouvrir (plan B).
+- **Fin de lot** : demande à <Prénom> si tu peux archiver les sessions de couche du lot.
 
 ## Sécurité (à recopier tel quel dans chaque prompt de couche)
 
@@ -46,7 +49,7 @@ Une session = une couche. Ne lance que les couches dont le lot a besoin.
 
 **La règle : un lot = une branche `lot/<nom>` et un worktree.** Deux lots en parallèle = deux branches et deux worktrees : ils ne se voient pas.
 
-- **Créer** : `git worktree add .worktrees/<nom> -b lot/<nom> origin/main` depuis la racine, puis installer les dépendances et recopier les fichiers d'environnement locaux sans jamais les afficher.
+- **Créer** : `bash scripts/worktree-nouveau.sh <nom>` depuis la racine. Il crée la branche `lot/<nom>` et le worktree `.worktrees/<nom>` à partir de `main` à jour, recopie les fichiers d'environnement locaux sans les afficher et installe les dépendances.
 - **Ports** : le dossier principal garde les ports par défaut. Chaque lot prend une paire fixe, notée dans l'état du lot.
 - **Personne ne travaille dans le dossier principal pendant un lot.** Il reste sur `main`. Seule exception : le chef de projet y commite `pilotage/` et les maquettes avant les lancements.
 - **Commits** : chaque session commite **uniquement ses fichiers**, avec `git commit -m "[<couche>] ..." -- <chemins précis>`. Jamais `git add -A` ni `.`. Préfixes : `[back]`, `[composants]`, `[écrans]`, `[chef]`. Elle ne pousse pas `main`.
@@ -55,11 +58,11 @@ Une session = une couche. Ne lance que les couches dont le lot a besoin.
   2. typecheck, lint, build et tests verts.
   3. `git push origin HEAD:main` (avance rapide ; refusé si `main` a bougé : retour au 1).
 - **Déployer** : uniquement depuis `main`, après la fusion.
-- **Nettoyer** : une fois fusionné et déployé, `git worktree remove .worktrees/<nom>` (refuse si le worktree a des changements ou si la branche n'est pas dans `origin/main`).
+- **Nettoyer** : une fois fusionné et déployé, `bash scripts/worktree-fin.sh <nom>` (refuse si le worktree a des changements ou si la branche n'est pas dans `origin/main`).
 
 ## Déroulé d'un lot
 
-1. **Relire** ce fichier, le **brief du lot**, ses décisions et les questions ouvertes dans `DECISIONS.md`, le `CLAUDE.md` racine, puis les `CLAUDE.md` des dossiers touchés.
+1. **Relire** ce fichier, `lots/_ORDRE.md` (ce lot est-il le prochain, dépend-il d'un autre ?), le **brief du lot**, ses décisions et les questions ouvertes dans `DECISIONS.md`, le `CLAUDE.md` racine, puis les `CLAUDE.md` des dossiers touchés.
 2. **Vérifier que tout est prêt** : décisions `prête`, maquette liée si un écran change. Sinon, arrêt.
 3. **Préparer git** : `main` du dossier principal à jour (`git pull`), puis branche et worktree, ports, zones réservées notées dans l'état du lot.
 4. **Planifier** les tâches par couche et leurs dépendances. Ordre habituel :
@@ -70,7 +73,7 @@ Une session = une couche. Ne lance que les couches dont le lot a besoin.
 7. **Suivre.** Réponds aux questions de coordination. Une question produit : tu ne la tranches pas, tu la notes en question ouverte et tu continues ce qui n'en dépend pas. Mets à jour « État du lot » à chaque étape.
 8. **Vérifier** : critères « C'est fini quand » de chaque décision, captures des écrans touchés (mobile et ordinateur, clair et sombre).
 9. **Fusionner, déployer, nettoyer**, puis purger les comptes de test du lot. **Contrôle de vie** après chaque déploiement : avec un compte de test, se connecter, ouvrir l'app, faire l'action principale. Échec = retour à la version précédente tout de suite, puis arrêt.
-10. **Mettre à jour** `DECISIONS.md` (statut + compte rendu) et **la roadmap**.
+10. **Mettre à jour** `DECISIONS.md` (statut + compte rendu), le statut du lot dans `lots/_ORDRE.md` et **la roadmap**.
 11. **Fermer les sessions** (demande à <Prénom> s'il faut les archiver) et rendre ton rapport.
 
 Si ta conversation coupe en cours de lot, un nouveau chef reprend à partir de la section « État du lot » du brief.

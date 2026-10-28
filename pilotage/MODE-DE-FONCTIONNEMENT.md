@@ -27,6 +27,7 @@ Le dossier `pilotage/` décrit **ce qu'on décide et comment on construit** :
 |---|---|---|
 | `MODE-DE-FONCTIONNEMENT.md` | Ce fichier | Chef de projet, quand le mode change |
 | `DECISIONS.md` | Le journal des décisions produit et de lot, avec leur statut | Le chef de projet écrit les décisions ; le chef de chantier met à jour le statut, le compte rendu et les questions ouvertes |
+| `lots/_ORDRE.md` | La file d'attente des lots : ordre, statut, dépendances | Le chef de projet ; le chef de chantier met à jour le statut |
 | `lots/L-xxx-<nom>.md` | Le **brief** d'un lot, son **état** (tenu par le chef de chantier) et les prompts de couche en annexe | Le chef de projet écrit le brief ; le chef de chantier tient l'état et l'annexe |
 | `CHEF-DE-CHANTIER.md` | Les consignes permanentes du chef de chantier | Chef de projet, quand une règle change |
 
@@ -76,5 +77,10 @@ Exécute le lot de bout en bout selon tes consignes. Arrête-toi seulement dans 
 
 - **Lancement à la racine** : le chef se lance toujours dans le dossier racine du projet, sinon il ne voit pas tout le projet.
 - **Lancement des sessions de couche** : le chef lance lui-même une session neuve par couche et par lot, en mode Auto, nommée « <App> | <Couche> | <lot> », et leur compte rendu lui revient. Il vérifie que ça marche au premier lot. **Plan B** : prompts en annexe du brief, <Prénom> ouvre les sessions.
-- **Autorisations** : le chef règle une fois le fichier d'autorisations local de la racine (ignoré par git) : git courant, build, tests, scripts du projet autorisés d'office. Restent à confirmer par <Prénom> : git destructif, commandes base de données risquées, tout SQL avec DELETE, TRUNCATE ou DROP, l'envoi d'e-mails, les paiements réels.
-- **Git** : `.gitattributes` avec `pilotage/DECISIONS.md merge=union` ; `.worktrees/` dans `.gitignore`.
+- **Plan Pro** : une seule session de couche à la fois, sauf si <Prénom> demande du parallèle. Le système est le même, il prend juste plus de temps et consomme moins de quota.
+- **Autorisations, à deux endroits** :
+  1. **Les commandes du terminal** : fichier `.claude/settings.local.json` à la racine (ignoré par git, modèle dans `claude-settings.local.json.exemple`). Autorisés d'office : git courant, build, tests, scripts du projet. À confirmer : `git push`, déploiement. Interdits : git destructif, `rm -rf`.
+  2. **Les connecteurs** (GitHub, base de données, roadmap...) : dans l'app Claude, Personnalisation > Connecteurs, outil par outil (autoriser / demander / bloquer). Lecture autorisée, écriture et suppression à confirmer.
+  Restent toujours à confirmer par <Prénom> : tout ce qui supprime des données, l'envoi d'e-mails, les paiements réels.
+- **Scripts** : `scripts/worktree-nouveau.sh <nom>` crée la branche et le worktree d'un lot ; `scripts/worktree-fin.sh <nom>` les nettoie après fusion.
+- **Git** : `.gitattributes` avec `pilotage/DECISIONS.md merge=union` ; `.worktrees/` et `.claude/settings.local.json` dans `.gitignore`.
