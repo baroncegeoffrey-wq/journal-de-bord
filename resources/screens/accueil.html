@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquette accueil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fond:#08080F; --panneau:#11111B; --panneau2:#171726; --ligne:#2A2A40;
+  --texte:#ECEAF4; --doux:#9896B0;
+  --jaune:#FCEE0A; --cyan:#00F0FF; --magenta:#FF2A6D; --vert:#3DFF8B;
+  --coin:14px;
+}
+*{box-sizing:border-box}
+html{background:var(--fond)}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:Rajdhani,system-ui,sans-serif;font-weight:500;font-size:19px;line-height:1.55;
+  background-image:linear-gradient(rgba(0,240,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.05) 1px,transparent 1px);background-size:48px 48px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px)}
+.page{max-width:960px;margin:0 auto;padding:0 16px 72px}
+h1,h2,h3{font-family:"Chakra Petch",sans-serif;line-height:1.08;margin:0;text-transform:uppercase}
+.mono{font-family:"Share Tech Mono",monospace;letter-spacing:.04em}
+a{color:inherit}
+.coupe{clip-path:polygon(0 0,calc(100% - var(--coin)) 0,100% var(--coin),100% 100%,var(--coin) 100%,0 calc(100% - var(--coin)))}
+
+/* Barre du haut */
+.barre{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;border-bottom:1px solid var(--ligne);font-size:14px;color:var(--doux)}
+.barre .statut{color:var(--vert)}
+.barre .statut::before{content:"";display:inline-block;width:8px;height:8px;background:var(--vert);margin-right:8px;box-shadow:0 0 8px var(--vert)}
+
+/* Hero */
+.hero{padding:56px 0 36px}
+.hero .surtitre{color:var(--cyan);font-size:15px}
+.hero h1{font-size:clamp(40px,8vw,84px);margin-top:12px;letter-spacing:.01em}
+.hero h1 .ligne1{display:block;color:var(--texte);font-size:.55em}
+.hero h1 .nom{display:block;color:var(--jaune);text-shadow:3px 0 0 var(--magenta),-3px 0 0 var(--cyan)}
+.hero p{max-width:620px;color:var(--doux);font-size:20px;margin:20px 0 0}
+.hero .infos{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.puce{font-family:"Share Tech Mono",monospace;font-size:14px;padding:7px 14px;border:1px solid currentColor;text-transform:uppercase}
+
+/* Sections */
+section{margin-top:56px}
+.titre-section{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.titre-section h2{font-size:30px}
+.titre-section .idx{color:var(--magenta);font-size:15px}
+.titre-section .trait{flex:1;height:1px;background:linear-gradient(90deg,var(--magenta),transparent)}
+
+/* Semaines */
+.semaines{display:grid;gap:16px}
+.semaine{position:relative;display:grid;grid-template-columns:96px 1fr;gap:20px;background:var(--panneau);padding:22px;text-decoration:none;border-left:3px solid var(--jaune);transition:transform .15s,background .15s}
+.semaine:hover{transform:translateX(4px);background:var(--panneau2)}
+.num{background:var(--jaune);color:var(--fond);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px 4px;font-family:"Chakra Petch",sans-serif;font-weight:700}
+.num small{font-family:"Share Tech Mono",monospace;font-size:12px}
+.num b{font-size:30px;line-height:1}
+.semaine h3{font-size:24px}
+.semaine .date{color:var(--cyan);font-size:14px;margin-top:4px}
+.semaine p{margin:8px 0 12px;color:var(--doux)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:"Share Tech Mono",monospace;font-size:13px;padding:2px 10px;background:var(--panneau2);border:1px solid var(--ligne);color:var(--texte)}
+.semaine.avenir{border-left-color:var(--ligne);opacity:.7}
+.semaine.avenir .num{background:transparent;color:var(--doux);border:1px dashed var(--doux)}
+.semaine .fleche{position:absolute;right:22px;top:22px;color:var(--jaune);font-family:"Share Tech Mono",monospace}
+
+/* Projets */
+.projets{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.projet{background:var(--panneau);padding:24px;border-top:3px solid}
+.projet .type{font-size:13px}
+.projet h3{font-size:28px;margin:8px 0 8px}
+.projet p{margin:0 0 14px;color:var(--doux)}
+
+/* Outils */
+.outils{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.outil{background:var(--panneau);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-family:"Chakra Petch",sans-serif;font-weight:700;text-transform:uppercase}
+.outil i{width:8px;height:8px;display:inline-block}
+
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--ligne);color:var(--doux);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+@media (max-width:560px){
+  .semaine{grid-template-columns:68px 1fr;gap:14px;padding:16px}
+  .num b{font-size:24px}
+  .semaine .fleche{display:none}
+  .barre .droite{display:none}
+}
+.note-maquette{border:1px dashed var(--cyan);color:var(--cyan);padding:10px 14px;font-size:14px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- Maquette validée par Geoffrey le 2026-10-28 (v2). Fait foi pour L-001. -->
+
+  <div class="barre mono">
+    <span>JDB://GEOFFREY.BARONCE</span>
+    <span class="droite statut">EN FORMATION</span>
+  </div>
+
+  <header class="hero">
+    <div class="surtitre mono">&gt; JOURNAL_DE_BORD.LOG</div>
+    <h1><span class="ligne1">Journal de bord de</span><span class="nom">Geoffrey Baronce</span></h1>
+    <p>Ma reconversion dans l'IA et le no-code, semaine après semaine : ce que j'apprends en formation, ce que je construis, et ce qui coince.</p>
+    <div class="infos">
+      <span class="puce" style="color:var(--cyan)">AI Builder · Alegria</span>
+      <span class="puce" style="color:var(--magenta)">Alternance MCI Group · janv. 2027</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="titre-section"><span class="idx mono">01</span><h2>Les semaines</h2><span class="trait"></span></div>
+    <div class="semaines">
+      <div class="semaine avenir coupe">
+        <div class="num"><small>SEM.</small><b>05</b></div>
+        <div>
+          <h3>Airtable : penser en données</h3>
+          <div class="date mono">26.10 → 30.10.2026 · CHARGEMENT…</div>
+          <p>Le début de la partie qui m'intéresse le plus : bases de données, relations, vues.</p>
+          <div class="tags"><span class="tag">AIRTABLE</span></div>
+        </div>
+      </div>
+      <a class="semaine coupe" href="semaine.html">
+        <span class="fleche">LIRE &gt;&gt;</span>
+        <div class="num"><small>SEM.</small><b>01-04</b></div>
+        <div>
+          <h3>Les bases : HTML, CSS et Webflow</h3>
+          <div class="date mono">28.09 → 23.10.2026</div>
+          <p>Un mois pour poser les fondations : coder un site à la main, puis refaire la même chose sans une ligne de code avec Webflow.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">WEBFLOW</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <div class="titre-section"><span class="idx mono">02</span><h2>Mes projets</h2><span class="trait"></span></div>
+    <div class="projets">
+      <div class="projet coupe" style="border-top-color:var(--cyan)">
+        <div class="type mono" style="color:var(--cyan)">[ APP NO-CODE ]</div>
+        <h3>Pacity</h3>
+        <p>Une app de réservation d'espaces de coworking, construite avec Airtable et Softr : modèle de données, automatisations, interface.</p>
+        <div class="tags"><span class="tag">AIRTABLE</span><span class="tag">SOFTR</span></div>
+      </div>
+      <div class="projet coupe" style="border-top-color:var(--magenta)">
+        <div class="type mono" style="color:var(--magenta)">[ ENTREPRISE ]</div>
+        <h3>Golden Wing</h3>
+        <p>Une agence de production audiovisuelle que je co-fonde. Je m'occupe de la structure et de la gestion, avec un tableau de bord Airtable.</p>
+        <div class="tags"><span class="tag">AIRTABLE</span><span class="tag">GESTION</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="titre-section"><span class="idx mono">03</span><h2>Mes outils</h2><span class="trait"></span></div>
+    <div class="outils">
+      <div class="outil coupe">Claude<i style="background:var(--jaune)"></i></div>
+      <div class="outil coupe">Airtable<i style="background:var(--cyan)"></i></div>
+      <div class="outil coupe">Make<i style="background:var(--magenta)"></i></div>
+      <div class="outil coupe">Softr<i style="background:var(--vert)"></i></div>
+      <div class="outil coupe">Webflow<i style="background:var(--cyan)"></i></div>
+      <div class="outil coupe">HTML / CSS<i style="background:var(--jaune)"></i></div>
+    </div>
+  </section>
+
+  <footer class="mono">
+    <span>© GEOFFREY BARONCE</span>
+    <span>MAJ HEBDO // FIN DE TRANSMISSION</span>
+  </footer>
+</div>
+</body>
+</html>

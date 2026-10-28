@@ -1,12 +1,13 @@
-# Ordre des lots : <App>
+# Ordre des lots : Journal de bord
 
 > La file d'attente des lots. Le chef de projet la tient : il ajoute les lots, les range par priorité et met à jour leur statut.
 > Le chef de chantier la lit au début de chaque lot pour savoir ce qui vient après, et ce qui doit attendre la fusion d'un autre.
 
 | Ordre | Lot | Titre | Décisions | Statut | Dépend de | Notes |
 |---|---|---|---|---|---|---|
-| 1 | L-001 | <titre court> | D-001 | prêt | rien | |
-| 2 | L-002 | <titre court> | D-002, D-003 | brouillon | L-001 | |
+| 1 | L-001 | Site en ligne : accueil + semaines 01 à 04 | D-001 | prêt | rien | Brief : `L-001-accueil-semaines-01-04.md`. Couches Site puis Contenu. |
+| 2 | L-002 | Semaine 05 : Airtable | D-002 | brouillon | L-001 | Contenu seul. Attend le récit de Geoffrey (vendredi 30 octobre). |
+| 3 | L-003 | Clins d'œil Akira et animations | D-003 | brouillon | L-001 | Site seul. Attend la maquette v3. |
 
 **Statuts** : `brouillon` (décisions pas encore prêtes) · `prêt` (on peut lancer) · `en cours` · `livré` · `bloqué` (voir les questions ouvertes de `DECISIONS.md`).
 
