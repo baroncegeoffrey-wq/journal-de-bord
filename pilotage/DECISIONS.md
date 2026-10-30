@@ -182,7 +182,7 @@ Rien d'autre n'est supprimé. Les originaux de `captures-a-trier/` restent en pl
 - Incident réglé en route : le build échouait dans `.worktrees/` (dépendances absentes du dossier principal), réglé par une installation des dépendances dans le dossier principal (rien de commité, voir la roadmap).
 
 ### D-004 : Semaine 05 (logique algorithmique en Ruby) et les projets perso « Journal de bord » et « Roadmap »
-**Date** : 2026-10-30 · **Statut** : prête · **Lot** : L-004 · **Type** : contenu
+**Date** : 2026-10-30 · **Statut** : en cours · **Lot** : L-004 · **Type** : contenu
 
 **Quoi** :
 - **Nouvelle entrée publiée** « Semaine 05 : logique algorithmique en Ruby », du 29 au 30.10.2026, en haut de l'accueil.
