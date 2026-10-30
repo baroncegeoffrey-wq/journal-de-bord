@@ -181,6 +181,64 @@ Rien d'autre n'est supprimé. Les originaux de `captures-a-trier/` restent en pl
 - Textes écrits par les sessions : aucun.
 - Incident réglé en route : le build échouait dans `.worktrees/` (dépendances absentes du dossier principal), réglé par une installation des dépendances dans le dossier principal (rien de commité, voir la roadmap).
 
+### D-004 : Semaine 05 (logique algorithmique en Ruby) et les projets perso « Journal de bord » et « Roadmap »
+**Date** : 2026-10-30 · **Statut** : prête · **Lot** : L-004 · **Type** : contenu
+
+**Quoi** :
+- **Nouvelle entrée publiée** « Semaine 05 : logique algorithmique en Ruby », du 29 au 30.10.2026, en haut de l'accueil.
+- **Deux nouvelles cartes dans « Mes projets »**, en premier : les projets perso « Journal de bord » (ce site) et « Roadmap » (son outil de suivi de projets, déjà en ligne), tous deux pilotés avec Claude.
+- **Nouvel outil** dans « Mes outils », en dernier : Ruby.
+
+**Pourquoi** : montrer au maître d'apprentissage le cours de la fin de semaine, et valoriser le projet perso de Geoffrey (piloter une équipe d'IA comme un chantier), qui est exactement ce qu'il fera en entreprise.
+**Couches** : Contenu.
+**Maquette** : aucune (contenu au modèle existant ; une 3e carte projet s'affiche avec la même grille).
+**Textes** (validés par Geoffrey, à reprendre mot pour mot) :
+
+*Fichier `semaine-05.md`* :
+- numero « 05 » · ordre 3 · debut 2026-10-29 · fin 2026-10-30 · statut publiee
+- titre : « Logique algorithmique : premiers pas en Ruby »
+- resume : « Deux jours pour comprendre comment un programme « pense » : conditions, boucles, méthodes, et deux mini-jeux codés en Ruby. »
+- outils : Ruby
+- Ce que j'ai appris :
+  - « La logique d'un programme : une suite d'étapes, des conditions (if, elsif, else) et des boucles qui tournent jusqu'à ce qu'on en sorte. »
+  - « Ruby : la syntaxe de base, les variables, les tableaux, et les méthodes (def) pour ranger son code en blocs réutilisables. »
+  - « Garder des informations pendant toute une partie (le prénom du joueur, le nombre d'essais) et les ressortir au bon moment. »
+- Ce que j'ai construit :
+  - « Un mini-programme avec un menu : le joueur choisit le jeu 1 ou le jeu 2. »
+  - « Jeu 1, le Juste Prix : trouver un nombre tiré au hasard entre 1 et 100, avec « plus » ou « moins » à chaque essai, et on recommence tant qu'on n'a pas trouvé. »
+  - « Jeu 2, Guess What : deviner le mot choisi au hasard dans une liste, avec un compteur d'essais et des dessins en ASCII art pour gagner ou perdre. »
+  - « En projets perso, à côté : ce journal de bord et Roadmap, mon outil pour suivre tous mes projets, construits sans coder moi-même. Je pilote Claude comme un chantier : un chef de projet avec qui je décide, un chef de chantier qui organise, et des équipes qui exécutent. »
+- Ce qui a coincé :
+  - « La syntaxe : un « end » oublié ou une parenthèse mal placée, et tout plante. Le plus important restait de comprendre le mécanisme, comment le programme se déroule étape par étape. »
+- La suite :
+  - « La suite du programme de la formation, et chaque lundi une mise à jour de ce journal. »
+- Captures (dans cet ordre, déjà recadrées par le chef de projet, dans `captures-a-trier/semaine-05/` du dossier principal) :
+  1. `1-ruby-dessins.png` → `ruby-dessins.png` : « Les dessins en ASCII art et le début du code Ruby »
+  2. `2-ruby-guess-what.png` → `ruby-guess-what.png` : « Le jeu Guess What : le code à gauche, une partie à droite »
+  3. `3-ruby-juste-prix.png` → `ruby-juste-prix.png` : « Le Juste Prix : le code à gauche, la sortie à droite »
+  4. `4-journal-de-bord.png` → `journal-de-bord.png` : « Projet perso : ce journal de bord, construit en pilotant Claude »
+  5. `5-roadmap-projets.png` → `roadmap-projets.png` : « Projet perso : Roadmap, mon outil pour suivre l'avancement de tous mes projets »
+  (Les gros mots des mini-jeux sont masqués par des étoiles sur les captures, à la demande de Geoffrey.)
+
+*Fichier `src/data/projets.json`* : ajouter **en premier, dans cet ordre**, deux cartes :
+- nom « Journal de bord » · etiquette « Projet perso » · couleur jaune · outils Claude, Astro, GitHub
+- description : « Ce site. Je ne l'ai pas codé moi-même : je pilote Claude comme un chantier, avec un chef de projet, un chef de chantier et des équipes spécialisées. Je décide, ils construisent. »
+- nom « Roadmap » · etiquette « Projet perso » · couleur vert · outils Claude, Supabase, Netlify
+- description : « Mon outil pour suivre tous mes projets : des tâches numérotées à cocher, une barre de progression et un rang qui monte, façon jeu vidéo. Construit avec la même méthode. »
+
+*Fichier `src/data/outils.json`* : ajouter en dernier `{ "nom": "Ruby", "couleur": "magenta" }`.
+
+**Actions destructives** : aucune.
+**C'est fini quand** :
+- En ligne, l'accueil montre, de haut en bas : « Semaine 05 » (publiée), « Semaines 03-05 », « Semaines 01-02 ».
+- La page `/journal-de-bord/semaines/semaine-05/` affiche les textes ci-dessus mot pour mot et ses 5 captures, qui se chargent en ligne ; la navigation va de 05 à 03-05 et inversement.
+- « Mes projets » affiche 4 cartes, dans l'ordre Journal de bord, Roadmap, Pacity, Golden Wing ; « Mes outils » se termine par Ruby ; 1280 et 390 px sans défilement horizontal.
+- Les 5 captures font moins de 500 Ko chacune ; `npm run build` est vert.
+
+**Compte rendu** (rempli par le chef) :
+
+---
+
 <!-- Modèle à copier pour chaque décision :
 
 ### D-xxx : <titre court>
