@@ -4,5 +4,6 @@
   { "nom": "Make", "couleur": "magenta" },
   { "nom": "Softr", "couleur": "vert" },
   { "nom": "Webflow", "couleur": "cyan" },
-  { "nom": "HTML / CSS", "couleur": "jaune" }
+  { "nom": "HTML / CSS", "couleur": "jaune" },
+  { "nom": "Ruby", "couleur": "magenta" }
 ]

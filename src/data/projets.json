@@ -1,5 +1,19 @@
 [
   {
+    "nom": "Journal de bord",
+    "etiquette": "Projet perso",
+    "couleur": "jaune",
+    "outils": ["Claude", "Astro", "GitHub"],
+    "description": "Ce site. Je ne l'ai pas codé moi-même : je pilote Claude comme un chantier, avec un chef de projet, un chef de chantier et des équipes spécialisées. Je décide, ils construisent."
+  },
+  {
+    "nom": "Roadmap",
+    "etiquette": "Projet perso",
+    "couleur": "vert",
+    "outils": ["Claude", "Supabase", "Netlify"],
+    "description": "Mon outil pour suivre tous mes projets : des tâches numérotées à cocher, une barre de progression et un rang qui monte, façon jeu vidéo. Construit avec la même méthode."
+  },
+  {
     "nom": "Pacity",
     "etiquette": "App no-code",
     "couleur": "cyan",
