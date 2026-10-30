@@ -19,7 +19,9 @@ Toutes les semaines ont le même format, pour se lire vite. Publier une semaine 
 | Semaine « à venir » : carte grisée sur l'accueil, sans page | x | | |
 | Capture ouverte en grand au clic (sans JavaScript) | x | | |
 | Récap des semaines 01-02 (HTML, CSS, Webflow) et des semaines 03-05 (Merise, UML, Airtable), publiés (D-001, D-002) | x | | |
-| Entrée suivante : logique algorithmique (29-30.10), à décider | | x | |
+| Semaine 05 (logique algorithmique en Ruby), publiée (D-004) | x | | |
+| Projets perso « Journal de bord » et « Roadmap » en tête de « Mes projets », outil Ruby (D-004) | x | | |
+| Mise à jour du journal chaque lundi | | x | |
 | Clins d'œil Akira (originaux) et petites animations (D-003) | x | | |
 | Barre « SYNC FORMATION » : avancement du bootcamp, recalculé chaque lundi (D-003) | x | | |
 | Nom de domaine personnel | | idée | |
@@ -34,7 +36,7 @@ Toutes les semaines ont le même format, pour se lire vite. Publier une semaine 
 1. Le lecteur arrive sur l'accueil : il voit qui est Geoffrey en une phrase, puis les semaines, la plus récente en haut.
 2. Il ouvre une semaine publiée : résumé, ce qui a été appris, construit, ce qui a coincé, la suite, puis les captures.
 3. Il agrandit une capture d'un clic, puis passe à la semaine précédente ou suivante.
-4. En bas de l'accueil, il voit les projets de Geoffrey (Pacity, Golden Wing) et ses outils.
+4. En bas de l'accueil, il voit les projets de Geoffrey (ses projets perso Journal de bord et Roadmap, construits en pilotant Claude, puis Pacity et Golden Wing) et ses outils.
 
 ## Écrans
 

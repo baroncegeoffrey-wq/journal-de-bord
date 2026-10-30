@@ -9,7 +9,7 @@
 
 ## Les semaines
 
-- [~] **D-004** : semaine 05 (logique algorithmique en Ruby), cartes projets perso « Journal de bord » et « Roadmap », outil Ruby · lot L-004
+- [x] **D-004** : semaine 05 (logique algorithmique en Ruby), cartes projets perso « Journal de bord » et « Roadmap », outil Ruby · lot L-004 · en ligne le 2026-10-30
 - [x] **D-002** : semaines 03 à 05 (Merise, UML, Airtable) et récap corrigé en semaines 01-02 · lot L-002 · en ligne le 2026-10-28
 
 ## Améliorations prévues
@@ -26,3 +26,4 @@
 - [x] Node.js est installé dans `~/.local/node` mais pas dans le PATH permanent : chaque session doit faire `export PATH="$HOME/.local/node/bin:$PATH"`. À rendre permanent (ligne dans `~/.profile`) si Geoffrey l'autorise, ou à noter dans le `CLAUDE.md`. Noté dans le `CLAUDE.md` (partie 5) au passage au modèle v3 (2026-10-28).
 - [ ] Avertissement GitHub : l'étiquette `ubuntu-latest` du workflow « Deploy » passe à Ubuntu 26. Rien à faire tant que le déploiement reste vert.
 - [x] Le build échouait dans `.worktrees/` (« Tsconfig not found astro/tsconfigs/strict ») : l'outil de build remonte jusqu'au `tsconfig.json` du dossier principal, qui n'avait pas ses dépendances. Réglé au L-003 par `npm ci` dans le dossier principal (rien de commité). À refaire si `node_modules/` du dossier principal disparaît.
+- [ ] Idée (pour le chef de projet) : « Mes projets » affiche 4 cartes en 3 + 1 sur ordinateur (Golden Wing seule sur la 2e ligne), car la grille de la maquette met autant de colonnes de 270 px que possible. Pour avoir 2 lignes de 2, il faut une petite décision d'apparence et un passage de la session Site. Relevé au L-004.

@@ -47,13 +47,13 @@ Le journal montre la fin de la semaine 5 (deux jours de logique algorithmique en
 
 ## État du lot (tenu par le chef de chantier)
 
-- **Statut** : en cours (session Contenu)
-- **Branche / worktree** : `lot/semaine-05-ruby` · `.worktrees/semaine-05-ruby`
+- **Statut** : livré et en ligne (2026-10-30)
+- **Branche / worktree** : `lot/semaine-05-ruby` · `.worktrees/semaine-05-ruby` (supprimé après fusion)
 - **Ports** : 4361
 - **Comptes de test créés** : aucun (site sans compte)
-- **Sessions lancées** : Journal de bord | Contenu | L-004
-- **Fait** : étape 0 (commit [projet] c02d079 poussé) ; aucune session L-003 ou L-002 ouverte ; captures relues par le chef (gros mots masqués, pas d'adresse Roadmap, rien de personnel ; `3-journal-de-bord.png` est un doublon exact de `4-journal-de-bord.png`, non publié) ; branche et worktree créés ; D-004 en cours.
-- **Reste à faire** : session Contenu, vérification (accueil, page semaine 05, grille des 4 projets, 1280 / 390 px), fusion, contrôle de vie, mises à jour finales.
+- **Sessions lancées** : Journal de bord | Contenu | L-004 (commit b412e81)
+- **Fait** : étape 0 (c02d079) ; captures relues ; couche Contenu ; vérification 1280 / 390 px ; fusion dans main ; Deploy vert ; contrôle de vie en ligne OK (accueil, page semaine 05, 5 captures, 4 projets, Ruby) ; DECISIONS, _ORDRE, ROADMAP et PROJECT-CONTEXT à jour.
+- **Reste à faire** : test en vrai par Geoffrey (ordinateur et téléphone) ; archiver la session de couche si Geoffrey le veut ; grille des projets 3 + 1 sur ordinateur : idée notée dans la roadmap, à décider.
 - **Bloquant** : rien
 
 ---

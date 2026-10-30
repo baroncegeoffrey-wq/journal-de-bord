@@ -182,7 +182,7 @@ Rien d'autre n'est supprimé. Les originaux de `captures-a-trier/` restent en pl
 - Incident réglé en route : le build échouait dans `.worktrees/` (dépendances absentes du dossier principal), réglé par une installation des dépendances dans le dossier principal (rien de commité, voir la roadmap).
 
 ### D-004 : Semaine 05 (logique algorithmique en Ruby) et les projets perso « Journal de bord » et « Roadmap »
-**Date** : 2026-10-30 · **Statut** : en cours · **Lot** : L-004 · **Type** : contenu
+**Date** : 2026-10-30 · **Statut** : livrée · **Lot** : L-004 · **Type** : contenu
 
 **Quoi** :
 - **Nouvelle entrée publiée** « Semaine 05 : logique algorithmique en Ruby », du 29 au 30.10.2026, en haut de l'accueil.
@@ -236,6 +236,12 @@ Rien d'autre n'est supprimé. Les originaux de `captures-a-trier/` restent en pl
 - Les 5 captures font moins de 500 Ko chacune ; `npm run build` est vert.
 
 **Compte rendu** (rempli par le chef) :
+- **Livré et en ligne le 2026-10-30** : https://baroncegeoffrey-wq.github.io/journal-de-bord/ (workflow « Deploy » vert, run 41081661591).
+- Commit : `b412e81` [contenu] (`semaine-05.md`, 5 captures, `projets.json`, `outils.json`), plus les commits [chef] de suivi.
+- Critères vérifiés en ligne : l'accueil montre « 05 », « 03-05 », « 01-02 » ; `/semaines/semaine-05/` affiche les textes mot pour mot (comparés automatiquement à cette décision) et ses 5 captures, qui se chargent ; navigation 05 ↔ 03-05 ; « Mes projets » : Journal de bord, Roadmap, Pacity, Golden Wing ; « Mes outils » se termine par Ruby ; aucun lien vers l'appli Roadmap ; barre « SYNC FORMATION » inchangée (`05 / 13`) ; 1280 et 390 px sans défilement horizontal ; `npm run build` vert.
+- Captures publiées (copies identiques aux originaux, aucune recompression) : ruby-dessins 1600 px / 251 Ko, ruby-guess-what 1600 px / 313 Ko, ruby-juste-prix 1600 px / 341 Ko, journal-de-bord 1600 px / 355 Ko, roadmap-projets 1600 px / 261 Ko. Relues par le chef : gros mots masqués, pas d'adresse de Roadmap, rien de personnel. `3-journal-de-bord.png` (doublon exact de la n° 4) n'est pas publié ; originaux laissés dans `captures-a-trier/`.
+- Écart : sur ordinateur, les 4 cartes projets s'affichent en 3 + 1 (Golden Wing seule en 2e ligne), et non en 2 + 2 comme l'imaginait le brief. C'est la règle de grille de la maquette (« la même grille »), donc conforme ; passer en 2 + 2 serait une décision d'apparence (notée dans la roadmap). Sur téléphone, une carte par ligne.
+- Textes écrits par la session : aucun.
 
 ---
 
